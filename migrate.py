@@ -101,6 +101,7 @@ mcheckups_data = [
 		"blood_cycling": "Ýürek toulary aýdyň, ritmiki",
 		"pulse": "P8: 78'",
 		"blood_pressure": "AGB: 170/80 mmss",
+		"blood_category": "4B+",
 		"stomach": "Dili çygly, arassa. Garny ýumşak, agry ýok. Bagry we dalagy ",
 		"vision": "OU = 1.0",
 		"withGlass": 0,

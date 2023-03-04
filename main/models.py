@@ -171,6 +171,7 @@ class Medical_checkup(db.Model):
 	blood_cycling = db.Column(db.String)
 	pulse = db.Column(db.String)
 	blood_pressure = db.Column(db.String)
+	blood_category = db.Column(db.String)
 	stomach = db.Column(db.String)
 	vision = db.Column(db.String)
 	withGlass = db.Column(db.Integer, nullable=False, default=0)
@@ -195,6 +196,7 @@ class Medical_checkup(db.Model):
 			"blood_cycling": self.blood_cycling,
 			"pulse": self.pulse,
 			"blood_pressure": self.blood_pressure,
+			"blood_category": self.blood_category,
 			"stomach": self.stomach,
 			"vision": self.vision,
 			"withGlass": self.withGlass,
