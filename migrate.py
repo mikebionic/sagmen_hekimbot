@@ -53,7 +53,7 @@ persons_data = [
 		"home_address": "Balkan w. Türkmenbaşy ş. Andalyp",
 		"m_place": "000 h/b Balkan wel",
 		"m_job": "",
-		"m_level": "Orta",
+		"m_level": "Okuwçy",
 		"birth_date": datetime(2002,10,14),
 		"birth_place": "",
 		"country": "",
@@ -61,14 +61,36 @@ persons_data = [
 		"city": "",
 		"address": "",
 		"ehw_name": "Türkmenbaşy ş. hw",
-		"knowledge_level": "",
+		"knowledge_level": "Orta",
+		"major": "",
+		"last_job": "Öý işler",
+		"m_call_year": 2020,
+		"sport_level": "",
+	},
+	{
+		"note": "",
+		"date": datetime(2020,11,23),
+		"name": "Welmyrat",
+		"surname": "Weliyew",
+		"patronomic": "Ahmedowiç",
+		"home_address": "Balkan w. Türkmenbaşy ş. Andalyp",
+		"m_place": "000 h/b Balkan wel",
+		"m_job": "",
+		"m_level": "Talyp",
+		"birth_date": datetime(2002,10,14),
+		"birth_place": "",
+		"country": "",
+		"state": "",
+		"city": "",
+		"address": "",
+		"ehw_name": "Türkmenbaşy ş. hw",
+		"knowledge_level": "Orta",
 		"major": "",
 		"last_job": "Öý işler",
 		"m_call_year": 2020,
 		"sport_level": "",
 	},
 ]
-
 
 
 physicals_data = [
@@ -127,9 +149,9 @@ for person in persons_data:
 for physical in physicals_data:
 	current_physical = Physical(**physical)
 	db.session.add(current_physical)
+	db.session.commit()
 
 for mcheckup in mcheckups_data:
 	current_mcheckup = Medical_checkup(**mcheckup)
 	db.session.add(current_mcheckup)
-
-db.session.commit()
+	db.session.commit()

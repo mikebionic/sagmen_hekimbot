@@ -24,7 +24,7 @@ def create_app(config_class=Config):
 	#from main.api import api as main_api
 	#app.register_blueprint(main_api, url_prefix='/api')
 
-	#from main.views import bp as views_bp
-	#app.register_blueprint(views_bp)
+	from main.views import bp as views_bp
+	app.register_blueprint(views_bp)
 
 	return app

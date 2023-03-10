@@ -1,5 +1,7 @@
 from flask_login import UserMixin
 from datetime import datetime
+import secrets
+from random import randint
 
 from main import db
 from main import login_manager
@@ -10,6 +12,7 @@ def load_user(id):
 
 class User(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	username = db.Column(db.String(255))
 	name = db.Column(db.String)
@@ -22,6 +25,7 @@ class User(db.Model, UserMixin):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"username": self.username,
 			"name": self.name,
 			"surname": self.surname,
@@ -34,6 +38,7 @@ class User(db.Model, UserMixin):
 # update(** code)
 class Person(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex)
 	note = db.Column(db.String)
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
 	date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -72,6 +77,7 @@ class Person(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note":self.note,
 			"created_date": self.created_date,
 			"name": self.name,
@@ -97,6 +103,7 @@ class Person(db.Model):
 
 class Physical(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -114,6 +121,7 @@ class Physical(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,
@@ -130,6 +138,7 @@ class Physical(db.Model):
 
 class Physical_review(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	physical_id = db.Column(db.Integer,db.ForeignKey("physical.id"))
 	height = db.Column(db.Integer)
@@ -144,6 +153,7 @@ class Physical_review(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"physical_id": self.physical_id,
 			"height": self.height,
@@ -158,6 +168,7 @@ class Physical_review(db.Model):
 
 class Medical_checkup(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -183,6 +194,7 @@ class Medical_checkup(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,
@@ -208,6 +220,7 @@ class Medical_checkup(db.Model):
 
 class Stomatology(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -215,6 +228,7 @@ class Stomatology(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,
@@ -222,6 +236,7 @@ class Stomatology(db.Model):
 
 class Review(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -231,6 +246,7 @@ class Review(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,
@@ -240,6 +256,7 @@ class Review(db.Model):
 
 class Flurography(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -249,6 +266,7 @@ class Flurography(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,
@@ -258,6 +276,7 @@ class Flurography(db.Model):
 
 class Vaccine(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -269,6 +288,7 @@ class Vaccine(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,
@@ -280,6 +300,7 @@ class Vaccine(db.Model):
 
 class Growth_result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -291,6 +312,7 @@ class Growth_result(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,
@@ -302,6 +324,7 @@ class Growth_result(db.Model):
 
 class Hospitalizing(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -311,6 +334,7 @@ class Hospitalizing(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,
@@ -320,6 +344,7 @@ class Hospitalizing(db.Model):
 
 class Radiometry(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -332,6 +357,7 @@ class Radiometry(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,
@@ -344,6 +370,7 @@ class Radiometry(db.Model):
 
 class Note(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -351,6 +378,7 @@ class Note(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,
@@ -358,6 +386,7 @@ class Note(db.Model):
 
 class Analysis(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -365,6 +394,7 @@ class Analysis(db.Model):
 	def to_json(self):
 		return {
 			"id": self.id,
+			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date,

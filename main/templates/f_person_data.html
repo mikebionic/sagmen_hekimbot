@@ -1,0 +1,500 @@
+{% extends 'layout.html' %} {% block content %}
+<section>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<div class="d-flex align-items-center">
+						<h4 class="card-title">Add Row</h4>
+						<button
+							class="btn btn-primary btn-round ml-auto"
+							data-toggle="modal"
+							data-target="#addRowModal"
+						>
+							<i class="icofont-plus"></i>
+							Add Row
+						</button>
+					</div>
+				</div>
+				<div class="card-body">
+					<!-- Modal -->
+					<div
+						class="modal fade"
+						id="addRowModal"
+						tabindex="-1"
+						role="dialog"
+						aria-hidden="true"
+					>
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header no-bd">
+									<h5 class="modal-title">
+										<span class="fw-mediumbold"> New</span>
+										<span class="fw-light"> Row </span>
+									</h5>
+									<button
+										type="button"
+										class="close"
+										data-dismiss="modal"
+										aria-label="Close"
+									>
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p class="small">
+										Create a new row using this form, make sure you fill them
+										all
+									</p>
+									<form>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group form-group-default">
+													<label>Name</label>
+													<input
+														id="addName"
+														type="text"
+														class="form-control"
+														placeholder="fill name"
+													/>
+												</div>
+											</div>
+											<div class="col-md-6 pr-0">
+												<div class="form-group form-group-default">
+													<label>Position</label>
+													<input
+														id="addPosition"
+														type="text"
+														class="form-control"
+														placeholder="fill position"
+													/>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group form-group-default">
+													<label>Office</label>
+													<input
+														id="addOffice"
+														type="text"
+														class="form-control"
+														placeholder="fill office"
+													/>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer no-bd">
+									<button
+										type="button"
+										id="addRowButton"
+										class="btn btn-primary"
+									>
+										Add
+									</button>
+									<button
+										type="button"
+										class="btn btn-danger"
+										data-dismiss="modal"
+									>
+										Close
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="table-responsive">
+						<table id="add-row" class="display table table-striped table-hover">
+							<thead>
+								<tr>
+									<th class="text-center">Boýy</th>
+									<th class="text-center">Agram</th>
+									<th class="text-center">Asuda</th>
+									<th class="text-center">Alanda</th>
+									<th class="text-center">Göýberende</th>
+									<th class="text-center">D Sag</th>
+									<th class="text-center">D Çep</th>
+									<th class="text-center">Sene</th>
+									<th class="text-center">Bellik</th>
+									<th class="text-center" style="width: 5%">Amal</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th class="text-center">Boýy</th>
+									<th class="text-center">Agram</th>
+									<th class="text-center">Dem Asuda</th>
+									<th class="text-center">Dem Alanda</th>
+									<th class="text-center">Dem Göý-de</th>
+									<th class="text-center">D Sag</th>
+									<th class="text-center">D Çep</th>
+									<th class="text-center">Sene</th>
+									<th class="text-center">Bellik</th>
+									<th class="text-center">Amal</th>
+								</tr>
+							</tfoot>
+							<tbody class="table_data">
+								{% for item in data %}
+								<tr class="item_row" owner_id="{{  }}">
+									<td class="text-center">Tiger Nixon</td>
+									<td class="text-center">System Architect</td>
+									<td class="text-center">Edinburgh</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_1"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_1"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+
+								<tr class="item_row" owner_id="item_1">
+									<td class="text-center">Tiger Nixon</td>
+									<td class="text-center">System Architect</td>
+									<td class="text-center">Edinburgh</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_1"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_1"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="item_row" owner_id="item_2">
+									<td class="text-center">Garrett Winters</td>
+									<td class="text-center">Accountant</td>
+									<td class="text-center">Tokyo</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_2"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_2"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="item_row" owner_id="item_3">
+									<td class="text-center">Ashton Cox</td>
+									<td class="text-center">Junior Technical Author</td>
+									<td class="text-center">San Francisco</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_3"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_3"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="item_row" owner_id="item_4">
+									<td class="text-center">Cedric Kelly</td>
+									<td class="text-center">Senior Javascript Developer</td>
+									<td class="text-center">Edinburgh</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_4"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_4"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="item_row" owner_id="item_5">
+									<td class="text-center">Airi Satou</td>
+									<td class="text-center">Accountant</td>
+									<td class="text-center">Tokyo</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_5"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_5"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="item_row" owner_id="item_6">
+									<td class="text-center">Brielle Williamson</td>
+									<td class="text-center">Integration Specialist</td>
+									<td class="text-center">New York</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_6"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_6"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="item_row" owner_id="item_7">
+									<td class="text-center">Herrod Chandler</td>
+									<td class="text-center">Sales Assistant</td>
+									<td class="text-center">San Francisco</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_7"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_7"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="item_row" owner_id="item_8">
+									<td class="text-center">Rhona Davidson</td>
+									<td class="text-center">Integration Specialist</td>
+									<td class="text-center">Tokyo</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_8"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_8"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="item_row" owner_id="item_9">
+									<td class="text-center">Colleen Hurst</td>
+									<td class="text-center">Javascript Developer</td>
+									<td class="text-center">San Francisco</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_9"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_9"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="item_row" owner_id="item_10">
+									<td class="text-center">Sonya Frost</td>
+									<td class="text-center">Software Engineer</td>
+									<td class="text-center">Edinburgh</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_10"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_10"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %} {% block scripts %}
+<script>
+	$(document).ready(function () {
+		// Add Row
+		//$("#add-row").DataTable({
+		//	pageLength: 5,
+		//});
+
+		var action =
+			'<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg edit_btn"  owner_id="> <i class="icofont-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger remove_btn" owner_id=> <i class="icofont-bin"></i> </button> </div> </td>';
+
+		$("#addRowButton").click(function () {
+			$(".table_data").prepend(
+				construct_table_row({
+					name: $("#addName").val(),
+					position: $("#addPosition").val(),
+					office: $("#addOffice").val(),
+				})
+			);
+			$("#addRowModal").modal("hide");
+		});
+	});
+
+	$("body").delegate(".remove_btn", "click", function (e) {
+		$(`.item_row[owner_id="${$(this).attr("owner_id")}"]`).remove();
+	});
+
+	const construct_table_row = (data) => `<tr class="item_row" owner_id="item_1">
+		<td class="text-center">${data.name}</td>
+		<td class="text-center">${data.position}</td>
+		<td class="text-center">${data.office}</td>
+		<td class="text-center">
+			<div class="form-button-action">
+				<button
+					type="button"
+					data-toggle="tooltip"
+					title=""
+					class="btn btn-link btn-primary btn-lg edit_btn"
+					owner_id="item_1"
+				>
+					<i class="icofont-edit"></i>
+				</button>
+				<button
+					type="button"
+					data-toggle="tooltip"
+					title=""
+					class="btn btn-link btn-danger remove_btn"
+					owner_id="item_1"
+				>
+					<i class="icofont-bin"></i>
+				</button>
+			</div>
+		</td>
+	</tr>`;
+</script>
+{% endblock %}
