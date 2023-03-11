@@ -42,7 +42,7 @@ def build_person_data(person):
 	data["Analysis"] = person.Analysis[-1].to_json() if person.Analysis else {}
 	return data
 
-
+@bp.route("/manage_person/")
 @bp.route("/manage_person/<id>")
 def manage_person(id=None):
 	if not id:
