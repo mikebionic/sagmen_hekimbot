@@ -69,7 +69,7 @@
 	</head>
 
 	<body>
-		<div class="container">
+		<div class="">
 			<!-- ======= Top Bar ======= -->
 			<div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
 				<div class="container d-flex">
@@ -209,6 +209,10 @@
 			<script src="{{url_for('static', filename='atlantis/assets/js/plugin/datatables/datatables.min.js')}}"></script>
 			<!-- Atlantis JS -->
 			<script src="{{url_for('static', filename='atlantis/assets/js/atlantis.min.js')}}"></script>
+
+			<script src="{{url_for('static', filename='atlantis/assets/js/plugin/chart-circle/circles.min.js')}}"></script>
+
+			<script src="{{url_for('static', filename='medscripts.js')}}"></script>
 
 			{% block scripts %}{% endblock %}
 		</div>

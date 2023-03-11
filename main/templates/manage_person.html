@@ -1,0 +1,212 @@
+{% extends 'layout.html' %} {% block content %}
+<section>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="card">
+				<div class="card-body">
+					<div class="user-profile row">
+						<div class="col text-center">
+							<div class="avatar avatar-sm">
+								<span class="avatar-title rounded-circle border border-white"
+									>{{data.name[0].upper()}}{{data.surname[0].upper()}}</span
+								>
+							</div>
+							<div class="name">{{ data.name }} {{ data.surname }}</div>
+							<div class="col">
+								<div class="job d-flex">
+									<img
+										src="../static/medicons/chevron.svg"
+										style="max-height: 1.5rem"
+									/>
+									<span>{{ data.m_level }}</span>
+								</div>
+								<div class="d-flex">
+									<img
+										src="../static/medicons/height.svg"
+										style="max-height: 1.5rem"
+									/>
+									<span>{{ data.Physical.height }}</span>
+								</div>
+								<div class="d-flex">
+									<img
+										src="../static/medicons/weight.svg"
+										style="max-height: 1.5rem"
+									/>
+									<span>{{ data.Physical.weight }}</span>
+								</div>
+
+								<div class="d-flex">
+									<img
+										src="../static/medicons/drop_of_blood.svg"
+										style="max-height: 1.5rem"
+									/>
+									<span>{{ data.Medical.blood_category }}</span>
+								</div>
+								<div class="d-flex">
+									<img
+										src="../static/medicons/pulse.svg"
+										style="max-height: 1.5rem"
+									/>
+									<span>{{ data.Medical.blood_pressure }}</span>
+								</div>
+
+								<div class="d-flex">
+									<img
+										src="../static/medicons/listen.svg"
+										style="max-height: 1.5rem"
+									/>
+									<span>{{ data.Medical.hearing }}</span>
+								</div>
+								<div class="d-flex">
+									<img
+										src="../static/medicons/eye.svg"
+										style="max-height: 1.5rem"
+									/>
+									<span>{{ data.Medical.vision }}</span>
+								</div>
+								<div class="d-flex">
+									<img
+										src="../static/medicons/glasses.svg"
+										style="max-height: 1.5rem"
+									/>
+									<span
+										>{{ 'Ýok' if not data.Medical.withGlass else 'Bar' }}
+									</span>
+								</div>
+								<div class="d-flex">
+									<img
+										src="../static/medicons/pulse.svg"
+										style="max-height: 1.5rem"
+									/>
+									<span>{{ data.Medical.pulse }}'</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="row">
+				<div class="col">
+					<div class="form-group">
+						<label>Ady</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Ady"
+						/>
+					</div>
+					<div class="form-group">
+						<label>Familiýasy</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Familiýasy"
+						/>
+					</div>
+					<div class="form-group">
+						<label>Atasynyň ady</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Atasynyň ady"
+						/>
+					</div>
+					<div class="form-group">
+						<label>Familiýasy</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Familiýasy"
+						/>
+					</div>
+					<div class="form-group">
+						<label>Doglan senesi</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Doglan senesi"
+						/>
+					</div>
+					<div class="form-group">
+						<label>Öý salgysy</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Öý salgysy"
+						/>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-group">
+						<label>Haýsy EHW çagyrylan</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Haýsy EHW çagyrylan"
+						/>
+					</div>
+					<div class="form-group">
+						<label>Bilimi</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Bilimi"
+						/>
+					</div>
+					<div class="form-group">
+						<label>G-ga çenli hünäri</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="G-ga çenli hünäri"
+						/>
+					</div>
+					<div class="form-group">
+						<label>Çagyrylan ýyly</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Çagyrylan ýyly"
+						/>
+					</div>
+					<div class="form-group">
+						<label>Sport meşgullygy</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Sport meşgullygy"
+						/>
+					</div>
+					<div class="form-group">
+						<label>Harby çini</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Harby çini"
+						/>
+					</div>
+					<div class="form-group">
+						<label>Harby hünäri</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Harby hünäri"
+						/>
+					</div>
+
+					<div class="form-group">
+						<label>Harby bölüm</label>
+						<input
+							type="text"
+							class="form-control form-control-sm"
+							placeholder="Harby bölüm"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

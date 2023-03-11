@@ -41,3 +41,13 @@ def build_person_data(person):
 	data["Note"] = person.Note[-1].to_json() if person.Note else {}
 	data["Analysis"] = person.Analysis[-1].to_json() if person.Analysis else {}
 	return data
+
+
+@bp.route("/manage_person/<id>")
+def manage_person(id=None):
+	if not id:
+		return render_template("manage_person.html")
+	
+	person = Person.query.get_or_404(id)
+	return render_template("manage_person.html", data=build_person_data(person))
+	
