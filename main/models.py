@@ -86,7 +86,7 @@ class Person(db.Model):
 			"id": self.id,
 			"hex": self.hex,
 			"note":self.note,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 			"name": self.name,
 			"surname": self.surname,
 			"patronomic": self.patronomic,
@@ -94,7 +94,7 @@ class Person(db.Model):
 			"m_place": self.m_place,
 			"m_job": self.m_job,
 			"m_level": self.m_level,
-			"birth_date": self.birth_date.strftime("%d/%m/%Y") if self.birth_date else None,
+			"birth_date": self.birth_date.strftime("%d.%m.%Y") if self.birth_date else None,
 			"birth_place": self.birth_place,
 			"country": self.country,
 			"state": self.state,
@@ -136,8 +136,8 @@ class Physical(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
-			"first_review_date": self.first_review_date.strftime("%d/%m/%Y") if self.first_review_date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"first_review_date": self.first_review_date.strftime("%d.%m.%Y") if self.first_review_date else None,
 			"height": self.height,
 			"weight": self.weight,
 			"lungs_default": self.lungs_default,
@@ -221,8 +221,8 @@ class Medical_checkup(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
-			"first_review_date": self.first_review_date.strftime("%d/%m/%Y") if self.first_review_date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"first_review_date": self.first_review_date.strftime("%d.%m.%Y") if self.first_review_date else None,
 			"allergy": self.allergy,
 			"has_allergy": self.has_allergy,
 			"body_construction": self.body_construction,
@@ -261,7 +261,7 @@ class Stomatology(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 		}
 
 	def update(self, **kwargs):
@@ -285,8 +285,8 @@ class Review(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
-			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d.%m.%Y") if self.date else None,
 			"result": self.result,
 		}
 
@@ -311,8 +311,8 @@ class Flurography(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
-			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d.%m.%Y") if self.date else None,
 			"result": self.result,
 		}
 
@@ -339,8 +339,8 @@ class Vaccine(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
-			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d.%m.%Y") if self.date else None,
 			"vaccine_name": self.vaccine_name,
 			"quantity": self.quantity,
 			"reaction": self.reaction,
@@ -369,8 +369,8 @@ class Growth_result(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
-			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d.%m.%Y") if self.date else None,
 			"growth": self.growth,
 			"health_state": self.health_state,
 			"reviewed_medic": self.reviewed_medic,
@@ -397,8 +397,8 @@ class Hospitalizing(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
-			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d.%m.%Y") if self.date else None,
 			"result": self.result,
 		}
 
@@ -426,8 +426,8 @@ class Radiometry(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
-			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d.%m.%Y") if self.date else None,
 			"result": self.result,
 			"review_range": self.review_range,
 			"yearly": self.yearly,
@@ -453,7 +453,7 @@ class Note(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 		}
 
 	def update(self, **kwargs):
@@ -475,7 +475,7 @@ class Analysis(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 		}
 
 	def update(self, **kwargs):

@@ -27,7 +27,7 @@ def manage_person_data(req_data):
 	if "person_patronomic" in req_data:
 		insertion_data["patronomic"] = req_data["person_patronomic"]
 	if "person_birth_date" in req_data:
-		insertion_data["birth_date"] = datetime.strptime(req_data["person_birth_date"], "%d/%m/%Y")
+		insertion_data["birth_date"] = datetime.strptime(req_data["person_birth_date"], "%d.%m.%Y")
 	if "person_birth_place" in req_data:
 		insertion_data["birth_place"] = req_data["person_birth_place"]
 	if "person_home_address" in req_data:
@@ -70,9 +70,9 @@ def manage_physical_data(req_data):
 	if "physical_person_id" in req_data:
 		insertion_data["person_id"] = req_data["physical_person_id"]
 	#if "physical_created_date" in req_data:
-	#	insertion_data["created_date"] = datetime.strptime(req_data["physical_created_date"], "%d/%m/%Y") if req_data["physical_created_date"] else None,
+	#	insertion_data["created_date"] = datetime.strptime(req_data["physical_created_date"], "%d.%m.%Y") if req_data["physical_created_date"] else None,
 	if "physical_first_review_date" in req_data:
-		insertion_data["first_review_date"] = datetime.strptime(req_data["physical_first_review_date"], "%d/%m/%Y") if req_data["physical_first_review_date"] else None,
+		insertion_data["first_review_date"] = datetime.strptime(req_data["physical_first_review_date"], "%d.%m.%Y") if req_data["physical_first_review_date"] else None,
 	if "physical_height" in req_data:
 		insertion_data["height"] = req_data["physical_height"]
 	if "physical_weight" in req_data:
@@ -113,9 +113,9 @@ def manage_medical_data(req_data):
 	if "medical_person_id" in req_data:
 		insertion_data["person_id"] = req_data["medical_person_id"]
 	#if "medical_created_date" in req_data:
-	#	insertion_data["created_date"] = datetime.strptime(req_data["medical_created_date"], "%d/%m/%Y") if req_data["medical_created_date"] else None,
+	#	insertion_data["created_date"] = datetime.strptime(req_data["medical_created_date"], "%d.%m.%Y") if req_data["medical_created_date"] else None,
 	if "medical_first_review_date" in req_data:
-		insertion_data["first_review_date"] = datetime.strptime(req_data["medical_first_review_date"], "%d/%m/%Y") if req_data["medical_first_review_date"] else None,
+		insertion_data["first_review_date"] = datetime.strptime(req_data["medical_first_review_date"], "%d.%m.%Y") if req_data["medical_first_review_date"] else None,
 	if "medical_allergy" in req_data:
 		insertion_data["allergy"] = req_data["medical_allergy"]
 	if "medical_has_allergy" in req_data:
