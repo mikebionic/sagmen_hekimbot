@@ -34,11 +34,17 @@ class User(db.Model, UserMixin):
 			"password": self.password,
 		}
 
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
+
 
 # update(** code)
 class Person(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex)
+	hex = db.Column(db.String,default=secrets.token_hex)
 	note = db.Column(db.String)
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
 	date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -63,6 +69,7 @@ class Person(db.Model):
 	sport_level = db.Column(db.String)
 
 	Physical = db.relationship("Physical",backref='person',lazy=True)
+	Physical_review = db.relationship("Physical_review",backref='physical_state',lazy=True)
 	Medical_checkup = db.relationship("Medical_checkup",backref='person',lazy=True)
 	Stomatology = db.relationship("Stomatology",backref='person',lazy=True)
 	Review = db.relationship("Review",backref='person',lazy=True)
@@ -79,7 +86,7 @@ class Person(db.Model):
 			"id": self.id,
 			"hex": self.hex,
 			"note":self.note,
-			"created_date": self.created_date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
 			"name": self.name,
 			"surname": self.surname,
 			"patronomic": self.patronomic,
@@ -87,7 +94,7 @@ class Person(db.Model):
 			"m_place": self.m_place,
 			"m_job": self.m_job,
 			"m_level": self.m_level,
-			"birth_date": self.birth_date,
+			"birth_date": self.birth_date.strftime("%d/%m/%Y") if self.birth_date else None,
 			"birth_place": self.birth_place,
 			"country": self.country,
 			"state": self.state,
@@ -100,6 +107,12 @@ class Person(db.Model):
 			"m_call_year": self.m_call_year,
 			"sport_level": self.sport_level,
 		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
 
 class Physical(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -116,16 +129,15 @@ class Physical(db.Model):
 	spirometry = db.Column(db.String)
 	dinamometry_right = db.Column(db.String)
 	dinamometry_left = db.Column(db.String)
-	Physical_review = db.relationship("Physical_review",backref='physical_state',lazy=True)
-
+	
 	def to_json(self):
 		return {
 			"id": self.id,
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
-			"first_review_date": self.first_review_date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"first_review_date": self.first_review_date.strftime("%d/%m/%Y") if self.first_review_date else None,
 			"height": self.height,
 			"weight": self.weight,
 			"lungs_default": self.lungs_default,
@@ -136,11 +148,17 @@ class Physical(db.Model):
 			"dinamometry_left": self.dinamometry_left,
 		}
 
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
+
 class Physical_review(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
-	physical_id = db.Column(db.Integer,db.ForeignKey("physical.id"))
+	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	height = db.Column(db.Integer)
 	weight = db.Column(db.Integer)
 	lungs_default = db.Column(db.Integer)
@@ -155,7 +173,7 @@ class Physical_review(db.Model):
 			"id": self.id,
 			"hex": self.hex,
 			"note": self.note,
-			"physical_id": self.physical_id,
+			"person_id": self.person_id,
 			"height": self.height,
 			"weight": self.weight,
 			"lungs_default": self.lungs_default,
@@ -166,13 +184,19 @@ class Physical_review(db.Model):
 			"dinamometry_left": self.dinamometry_left,
 		}
 
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
+
 class Medical_checkup(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
-	first_review_date = db.Column(db.String)
+	first_review_date = db.Column(db.DateTime,default=datetime.now())
 	allergy = db.Column(db.String)
 	has_allergy = db.Column(db.Integer,nullable=False,default=0)
 	body_construction = db.Column(db.String)
@@ -197,8 +221,8 @@ class Medical_checkup(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
-			"first_review_date": self.first_review_date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"first_review_date": self.first_review_date.strftime("%d/%m/%Y") if self.first_review_date else None,
 			"allergy": self.allergy,
 			"has_allergy": self.has_allergy,
 			"body_construction": self.body_construction,
@@ -218,6 +242,12 @@ class Medical_checkup(db.Model):
 			"reviewed_medic": self.reviewed_medic,
 		}
 
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
+
 class Stomatology(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
@@ -231,8 +261,14 @@ class Stomatology(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
 		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
 
 class Review(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -249,10 +285,16 @@ class Review(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
-			"date": self.date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
 			"result": self.result,
 		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
 
 class Flurography(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -269,10 +311,16 @@ class Flurography(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
-			"date": self.date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
 			"result": self.result,
 		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
 
 class Vaccine(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -291,12 +339,18 @@ class Vaccine(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
-			"date": self.date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
 			"vaccine_name": self.vaccine_name,
 			"quantity": self.quantity,
 			"reaction": self.reaction,
 		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
 
 class Growth_result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -315,12 +369,18 @@ class Growth_result(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
-			"date": self.date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
 			"growth": self.growth,
 			"health_state": self.health_state,
 			"reviewed_medic": self.reviewed_medic,
 		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
 
 class Hospitalizing(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -337,10 +397,16 @@ class Hospitalizing(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
-			"date": self.date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
 			"result": self.result,
 		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
 
 class Radiometry(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -360,13 +426,19 @@ class Radiometry(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
-			"date": self.date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
+			"date": self.date.strftime("%d/%m/%Y") if self.date else None,
 			"result": self.result,
 			"review_range": self.review_range,
 			"yearly": self.yearly,
 			"work_start": self.work_start,
 		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
 
 class Note(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -381,8 +453,14 @@ class Note(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
 		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
 
 class Analysis(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -397,5 +475,11 @@ class Analysis(db.Model):
 			"hex": self.hex,
 			"note": self.note,
 			"person_id": self.person_id,
-			"created_date": self.created_date,
+			"created_date": self.created_date.strftime("%d/%m/Y %H:%M:S") if self.created_date else None,
 		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)

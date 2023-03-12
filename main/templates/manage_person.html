@@ -97,139 +97,167 @@
 				</div>
 
 				<div class="card-body">
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label>Ady</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.name if data else '' }}"
-									placeholder="Ady"
-								/>
+					<form action="{{url_for('views.manage_person_post')}}" method="POST">
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<input
+										type="hidden"
+										class="form-control form-control-sm"
+										name="person_hex"
+										value="{{ data.hex if data else '' }}"
+									/>
+									<label>Ady</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_name"
+										value="{{ data.name if data else '' }}"
+										placeholder="Ady"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Familiýasy</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_surname"
+										value="{{ data.surname if data else '' }}"
+										placeholder="Familiýasy"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Atasynyň ady</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_patronomic"
+										value="{{ data.patronomic if data else '' }}"
+										placeholder="Atasynyň ady"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Doglan senesi</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_birth_date"
+										value="{{ data.birth_date if data else '' }}"
+										placeholder="Doglan senesi"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Doglan ýeri</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_birth_place"
+										value="{{ data.birth_place if data else '' }}"
+										placeholder="Doglan ýeri"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Öý salgysy</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_home_address"
+										value="{{ data.home_address if data else '' }}"
+										placeholder="Öý salgysy"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Haýsy EHW çagyrylan</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_ehw_name"
+										value="{{ data.ehw_name if data else '' }}"
+										placeholder="Haýsy EHW çagyrylan"
+									/>
+								</div>
 							</div>
-							<div class="form-group">
-								<label>Familiýasy</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.surname if data else '' }}"
-									placeholder="Familiýasy"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Atasynyň ady</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.patronomic if data else '' }}"
-									placeholder="Atasynyň ady"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Doglan senesi</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.birth_date if data else '' }}"
-									placeholder="Doglan senesi"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Doglan ýeri</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.birth_place if data else '' }}"
-									placeholder="Doglan ýeri"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Öý salgysy</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.home_address if data else '' }}"
-									placeholder="Öý salgysy"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Haýsy EHW çagyrylan</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.ehw_name if data else '' }}"
-									placeholder="Haýsy EHW çagyrylan"
-								/>
-							</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<label>Bilimi</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.knowledge_level if data else '' }}"
-									placeholder="Bilimi"
-								/>
-							</div>
-							<div class="form-group">
-								<label>G-ga çenli hünäri</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.last_job if data else '' }}"
-									placeholder="G-ga çenli hünäri"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Çagyrylan ýyly</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.m_call_year if data else '' }}"
-									placeholder="Çagyrylan ýyly"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Sport meşgullygy</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.sport_level if data else '' }}"
-									placeholder="Sport meşgullygy"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Harby çini</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.m_level if data else '' }}"
-									placeholder="Harby çini"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Harby hünäri</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.m_job if data else '' }}"
-									placeholder="Harby hünäri"
-								/>
-							</div>
+							<div class="col">
+								<div class="form-group">
+									<label>Bilimi</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_knowledge_level"
+										value="{{ data.knowledge_level if data else '' }}"
+										placeholder="Bilimi"
+									/>
+								</div>
+								<div class="form-group">
+									<label>G-ga çenli hünäri</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_last_job"
+										value="{{ data.last_job if data else '' }}"
+										placeholder="G-ga çenli hünäri"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Çagyrylan ýyly</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_m_call_year"
+										value="{{ data.m_call_year if data else '' }}"
+										placeholder="Çagyrylan ýyly"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Sport meşgullygy</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_sport_level"
+										value="{{ data.sport_level if data else '' }}"
+										placeholder="Sport meşgullygy"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Harby çini</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_m_level"
+										value="{{ data.m_level if data else '' }}"
+										placeholder="Harby çini"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Harby hünäri</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_m_job"
+										value="{{ data.m_job if data else '' }}"
+										placeholder="Harby hünäri"
+									/>
+								</div>
 
-							<div class="form-group">
-								<label>Harby bölüm</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.m_place if data else '' }}"
-									placeholder="Harby bölüm"
-								/>
+								<div class="form-group">
+									<label>Harby bölüm</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="person_m_place"
+										value="{{ data.m_place if data else '' }}"
+										placeholder="Harby bölüm"
+									/>
+								</div>
 							</div>
 						</div>
-					</div>
+						<button
+							class="btn btn-outline-primary btn-sm btn-round"
+							type="submit"
+						>
+							Ýatda sakla
+						</button>
+					</form>
 				</div>
 			</div>
 
@@ -241,105 +269,347 @@
 				</div>
 
 				<div class="card-body">
-					<div class="row">
-						<div class="col">
-							<div class="row">
-								<div class="form-group col-6">
-									<label>Boýy, sm</label>
+					<form action="{{url_for('views.manage_physical')}}" method="POST">
+						<div class="row">
+							<div class="col">
+								<div class="row">
+									<div class="form-group col-6">
+										<input
+											type="hidden"
+											class="form-control form-control-sm"
+											name="physical_hex"
+											value="{{ data.Physical.hex if data else '' }}"
+										/>
+										<input
+											type="hidden"
+											class="form-control form-control-sm"
+											name="physical_person_id"
+											value="{{ data.Physical.person_id if data else '' }}"
+										/>
+										<label>Boýy, sm</label>
+										<input
+											type="text"
+											class="form-control form-control-sm"
+											name="physical_height"
+											value="{{ data.Physical.height if data else '' }}"
+											placeholder="Boýy, sm"
+										/>
+									</div>
+									<div class="form-group col-6">
+										<label>Agramy, kg</label>
+										<input
+											type="text"
+											class="form-control form-control-sm"
+											name="physical_weight"
+											value="{{ data.Physical.weight if data else '' }}"
+											placeholder="Agramy, kg"
+										/>
+									</div>
+								</div>
+
+								<label>Külke giňişligi</label>
+								<div class="row">
+									<div class="form-group col-4">
+										<label>Asuda</label>
+										<input
+											type="text"
+											class="form-control form-control-sm"
+											name="physical_lungs_default"
+											value="{{ data.Physical.lungs_default if data else '' }}"
+											placeholder="Asuda"
+										/>
+									</div>
+									<div class="form-group col-4">
+										<label>Dem alanda</label>
+										<input
+											type="text"
+											class="form-control form-control-sm"
+											name="physical_lungs_inhaled"
+											value="{{ data.Physical.lungs_inhaled if data else '' }}"
+											placeholder="Dem alanda"
+										/>
+									</div>
+									<div class="form-group col-4">
+										<label>Dem göýberende</label>
+										<input
+											type="text"
+											class="form-control form-control-sm"
+											name="physical_lungs_exhaled"
+											value="{{ data.Physical.lungs_exhaled if data else '' }}"
+											placeholder="Dem göýberende"
+										/>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label>Spirometriýa</label>
 									<input
 										type="text"
 										class="form-control form-control-sm"
-										value="{{ data.Physical.height if data else '' }}"
-										placeholder="Boýy, sm"
+										name="physical_spirometry"
+										value="{{ data.Physical.spirometry if data else '' }}"
+										placeholder="Spirometriýa"
 									/>
 								</div>
-								<div class="form-group col-6">
-									<label>Agramy, kg</label>
-									<input
-										type="text"
-										class="form-control form-control-sm"
-										value="{{ data.Physical.weight if data else '' }}"
-										placeholder="Agramy, kg"
-									/>
+
+								<label>Eliniň dinamometriýasy</label>
+								<div class="row">
+									<div class="form-group col-6">
+										<label>Sag</label>
+										<input
+											type="text"
+											class="form-control form-control-sm"
+											name="physical_dinamometry_right"
+											value="{{ data.Physical.dinamometry_right if data else '' }}"
+											placeholder="Sag"
+										/>
+									</div>
+
+									<div class="form-group col-6">
+										<label>Çep</label>
+										<input
+											type="text"
+											class="form-control form-control-sm"
+											name="physical_dinamometry_left"
+											value="{{ data.Physical.dinamometry_left if data else '' }}"
+											placeholder="Çep"
+										/>
+									</div>
 								</div>
 							</div>
-
-							<label>Külke giňişligi</label>
-							<div class="row">
-								<div class="form-group col-4">
-									<label>Asuda</label>
-									<input
+							<div class="col">
+								<div class="form-group">
+									<label>Bellik</label>
+									<textarea
 										type="text"
 										class="form-control form-control-sm"
-										value="{{ data.Physical.lungs_default if data else '' }}"
-										placeholder="Asuda"
-									/>
-								</div>
-								<div class="form-group col-4">
-									<label>Dem alanda</label>
-									<input
-										type="text"
-										class="form-control form-control-sm"
-										value="{{ data.Physical.lungs_inhaled if data else '' }}"
-										placeholder="Dem alanda"
-									/>
-								</div>
-								<div class="form-group col-4">
-									<label>Dem göýberende</label>
-									<input
-										type="text"
-										class="form-control form-control-sm"
-										value="{{ data.Physical.lungs_exhaled if data else '' }}"
-										placeholder="Dem göýberende"
-									/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label>Spirometriýa</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Physical.spirometry if data else '' }}"
-									placeholder="Spirometriýa"
-								/>
-							</div>
-
-							<label>Eliniň dinamometriýasy</label>
-							<div class="row">
-								<div class="form-group col-6">
-									<label>Sag</label>
-									<input
-										type="text"
-										class="form-control form-control-sm"
-										value="{{ data.Physical.dinamometry_right if data else '' }}"
-										placeholder="Sag"
-									/>
-								</div>
-
-								<div class="form-group col-6">
-									<label>Çep</label>
-									<input
-										type="text"
-										class="form-control form-control-sm"
-										value="{{ data.Physical.dinamometry_left if data else '' }}"
-										placeholder="Çep"
-									/>
+										name="physical_note"
+										value="{{ data.Physical.note if data else '' }}"
+										placeholder="Bellik"
+										rows="10"
+									></textarea>
 								</div>
 							</div>
 						</div>
-						<div class="col">
-							<div class="form-group">
-								<label>Bellik</label>
-								<textarea
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Physical.note if data else '' }}"
-									placeholder="Bellik"
-									rows="10"
-								></textarea>
+						<button
+							class="btn btn-outline-primary btn-sm btn-round"
+							type="submit"
+						>
+							Ýatda sakla
+						</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-header">
+					<div class="d-flex align-items-center">
+						<div class="card-title">Gözegcilik maglumatlary</div>
+						<button
+							class="btn btn-primary btn-round ml-auto"
+							data-toggle="modal"
+							data-target="#addPhysReviewModal"
+						>
+							<i class="icofont-plus"></i>
+							Setir goş
+						</button>
+					</div>
+				</div>
+
+				<div class="card-body">
+					<div
+						class="modal fade"
+						id="addPhysReviewModal"
+						tabindex="-1"
+						role="dialog"
+						aria-hidden="true"
+					>
+						<div class="modal-dialog" style="max-width: 1000px" role="document">
+							<div class="modal-content">
+								<div class="modal-header no-bd">
+									<h5 class="modal-title">
+										<span class="fw-mediumbold"> Täze</span>
+										<span class="fw-light"> Setir</span>
+									</h5>
+									<button
+										type="button"
+										class="close"
+										data-dismiss="modal"
+										aria-label="Close"
+									>
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p class="small">Täze gözegçilik maglumaty goş</p>
+									<form>
+										<div class="row">
+											<div class="col">
+												<div class="row">
+													<div class="form-group col-6">
+														<label>Boýy, sm</label>
+														<input
+															type="text"
+															class="form-control form-control-sm"
+															placeholder="Boýy, sm"
+														/>
+													</div>
+													<div class="form-group col-6">
+														<label>Agramy, kg</label>
+														<input
+															type="text"
+															class="form-control form-control-sm"
+															placeholder="Agramy, kg"
+														/>
+													</div>
+												</div>
+
+												<label>Külke giňişligi</label>
+												<div class="row">
+													<div class="form-group col-4">
+														<label>Asuda</label>
+														<input
+															type="text"
+															class="form-control form-control-sm"
+															placeholder="Asuda"
+														/>
+													</div>
+													<div class="form-group col-4">
+														<label>Dem alanda</label>
+														<input
+															type="text"
+															class="form-control form-control-sm"
+															placeholder="Dem alanda"
+														/>
+													</div>
+													<div class="form-group col-4">
+														<label>Dem göýberende</label>
+														<input
+															type="text"
+															class="form-control form-control-sm"
+															placeholder="Dem göýberende"
+														/>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label>Spirometriýa</label>
+													<input
+														type="text"
+														class="form-control form-control-sm"
+														placeholder="Spirometriýa"
+													/>
+												</div>
+
+												<label>Eliniň dinamometriýasy</label>
+												<div class="row">
+													<div class="form-group col-6">
+														<label>Sag</label>
+														<input
+															type="text"
+															class="form-control form-control-sm"
+															placeholder="Sag"
+														/>
+													</div>
+
+													<div class="form-group col-6">
+														<label>Çep</label>
+														<input
+															type="text"
+															class="form-control form-control-sm"
+															placeholder="Çep"
+														/>
+													</div>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-group">
+													<label>Bellik</label>
+													<textarea
+														type="text"
+														class="form-control form-control-sm"
+														placeholder="Bellik"
+														rows="10"
+													></textarea>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer no-bd">
+									<button
+										type="button"
+										id="addRowButton"
+										class="btn btn-primary"
+									>
+										Goş
+									</button>
+									<button
+										type="button"
+										class="btn btn-danger"
+										data-dismiss="modal"
+									>
+										Ýap
+									</button>
+								</div>
 							</div>
 						</div>
+					</div>
+
+					<div class="table-responsive">
+						<table id="add-row" class="display table table-striped table-hover">
+							<thead>
+								<tr>
+									<th class="text-center">Boýy</th>
+									<th class="text-center">Agramy</th>
+									<th class="text-center">Külke Asuda</th>
+									<th class="text-center">Külke Dem alanda</th>
+									<th class="text-center">Külke Dem göýberende</th>
+									<th class="text-center">Spirometriýa</th>
+									<th class="text-center">Dinam. Sag</th>
+									<th class="text-center">Dinam. Çep</th>
+									<th class="text-center">Bellik</th>
+									<th class="text-center" style="width: 5%">Amal</th>
+								</tr>
+							</thead>
+							<tbody class="table_data">
+								{% for item in data.Physical_review %}
+								<tr class="item_row" owner_id="physreview_{{item.hex}}">
+									<td class="text-center">{{item.height}}</td>
+									<td class="text-center">{{item.weight}}</td>
+									<td class="text-center">{{item.lungs_default}}</td>
+									<td class="text-center">{{item.lungs_inhaled}}</td>
+									<td class="text-center">{{item.lungs_exhaled}}</td>
+									<td class="text-center">{{item.spirometry}}</td>
+									<td class="text-center">{{item.dinamometry_right}}</td>
+									<td class="text-center">{{item.dinamometry_left}}</td>
+									<td class="text-center">{{item.note}}</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_1"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_1"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
@@ -350,210 +620,375 @@
 				</div>
 
 				<div class="card-body">
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label>Barlag senesi</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.first_review_date if data else '' }}"
-									placeholder="Barlag senesi"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Allergiýa</label>
+					<form action="{{url_for('views.manage_medical')}}" method="POST">
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<input
+										type="hidden"
+										class="form-control form-control-sm"
+										name="medical_hex"
+										value="{{ data.Medical.hex if data else '' }}"
+									/>
+									<input
+										type="hidden"
+										class="form-control form-control-sm"
+										name="medical_person_id"
+										value="{{ data.Medical.person_id if data else '' }}"
+									/>
+									<label>Barlag senesi</label>
+									<input
+										type="datetime"
+										name="date"
+										class="form-control form-control-sm datepicker"
+										id="date"
+										placeholder="Barlag senesi"
+										data-rule="minlen:4"
+										data-msg="Please enter at least 4 chars"
+										value="{{ data.Medical.first_review_date if data else '' }}"
+									/>
 
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.allergy if data else '' }}"
-									placeholder="Allergiýa"
-								/>
+									<div class="validate"></div>
+									<!--<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_first_review_date"
+										value="{{ data.Medical.first_review_date if data else '' }}"
+										placeholder="Barlag senesi"
+									/>-->
+								</div>
+								<div class="form-group">
+									<label>Allergiýa</label>
 
-								<!--<div class="form-group">
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_allergy"
+										value="{{ data.Medical.allergy if data else '' }}"
+										placeholder="Allergiýa"
+									/>
+
+									<!--<div class="form-group">
 									<label>Allergiýa barmy</label>
 									<select class="form-control form-control-sm">
 										<option value="1">Bar</option>
 										<option value="0">Ýok</option>
 									</select>
 								</div>-->
+								</div>
+								<div class="form-group">
+									<label>Beden gurluşy</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_body_construction"
+										value="{{ data.Medical.body_construction if data else '' }}"
+										placeholder="Beden gurluşy"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Beden örtügi</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_body_state"
+										value="{{ data.Medical.body_state if data else '' }}"
+										placeholder="Beden örtügi"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Süňk, myşsa gurluşy</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_bone_muscle"
+										value="{{ data.Medical.bone_muscle if data else '' }}"
+										placeholder="Süňk, myşsa gurluşy"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Dem alyş organlary</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_breathing"
+										value="{{ data.Medical.breathing if data else '' }}"
+										placeholder="Dem alyş organlary"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Gan aýlanyş</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_blood_cycling"
+										value="{{ data.Medical.blood_cycling if data else '' }}"
+										placeholder="Gan aýlanyş"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Puls</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_pulse"
+										value="{{ data.Medical.pulse if data else '' }}"
+										placeholder="Puls"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Gan basyşy</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_blood_pressure"
+										value="{{ data.Medical.blood_pressure if data else '' }}"
+										placeholder="Gan basyşy"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Gan topary</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_blood_category"
+										value="{{ data.Medical.blood_category if data else '' }}"
+										placeholder="Gan topary"
+									/>
+								</div>
 							</div>
-							<div class="form-group">
-								<label>Beden gurluşy</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.body_construction if data else '' }}"
-									placeholder="Beden gurluşy"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Beden örtügi</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.body_state if data else '' }}"
-									placeholder="Beden örtügi"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Süňk, myşsa gurluşy</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.bone_muscle if data else '' }}"
-									placeholder="Süňk, myşsa gurluşy"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Dem alyş organlary</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.breathing if data else '' }}"
-									placeholder="Dem alyş organlary"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Gan aýlanyş</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.blood_cycling if data else '' }}"
-									placeholder="Gan aýlanyş"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Puls</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.name if data else '' }}"
-									placeholder="Puls"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Gan basyşy</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.blood_pressure if data else '' }}"
-									placeholder="Gan basyşy"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Gan topary</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.blood_category if data else '' }}"
-									placeholder="Gan topary"
-								/>
+							<div class="col">
+								<div class="form-group">
+									<label>Iýmit siňdiriş organlary</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_stomach"
+										value="{{ data.Medical.stomach if data else '' }}"
+										placeholder="Iýmit siňdiriş organlary"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Görüş</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_vision"
+										value="{{ data.Medical.vision if data else '' }}"
+										placeholder="Görüş"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Eşidiş</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_hearing"
+										value="{{ data.Medical.hearing if data else '' }}"
+										placeholder="Eşidiş"
+									/>
+								</div>
+								<div class="form-group">
+									<label>Nerw sistemasy</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_nerve"
+										value="{{ data.Medical.nerve if data else '' }}"
+										placeholder="Nerw sistemasy"
+									/>
+								</div>
+
+								<div class="form-group">
+									<label>Beýleki organ gurlyşy</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_other"
+										value="{{ data.Medical.other if data else '' }}"
+										placeholder="Beýleki organ gurlyşy"
+									/>
+								</div>
+
+								<div class="form-group">
+									<label>Lukman</label>
+									<input
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_reviewed_medic"
+										value="{{ data.Medical.reviewed_medic if data else '' }}"
+										placeholder="Lukman"
+									/>
+								</div>
+
+								<div class="form-group">
+									<label>Bellik</label>
+									<textarea
+										type="text"
+										class="form-control form-control-sm"
+										name="medical_note"
+										value="{{ data.Medical.note if data else '' }}"
+										placeholder="Bellik"
+										rows="10"
+									></textarea>
+								</div>
 							</div>
 						</div>
-						<div class="col">
-							<div class="form-group">
-								<label>Iýmit siňdiriş organlary</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.stomach if data else '' }}"
-									placeholder="Iýmit siňdiriş organlary"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Görüş</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.vision if data else '' }}"
-									placeholder="Görüş"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Eşidiş</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.hearing if data else '' }}"
-									placeholder="Eşidiş"
-								/>
-							</div>
-							<div class="form-group">
-								<label>Nerw sistemasy</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.nerve if data else '' }}"
-									placeholder="Nerw sistemasy"
-								/>
-							</div>
-
-							<div class="form-group">
-								<label>Beýleki organ gurlyşy</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.other if data else '' }}"
-									placeholder="Beýleki organ gurlyşy"
-								/>
-							</div>
-
-							<div class="form-group">
-								<label>Lukman</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.reviewed_medic if data else '' }}"
-									placeholder="Lukman"
-								/>
-							</div>
-
-							<div class="form-group">
-								<label>Bellik</label>
-								<textarea
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.Medical.note if data else '' }}"
-									placeholder="Bellik"
-									rows="10"
-								></textarea>
-							</div>
-						</div>
-					</div>
+						<button
+							class="btn btn-outline-primary btn-sm btn-round"
+							type="submit"
+						>
+							Ýatda sakla
+						</button>
+					</form>
 				</div>
 			</div>
 
 			<div class="card">
 				<div class="card-header">
-					<div class="card-title">Nobatdaky gözegçiligiň maglumaty</div>
+					<div class="d-flex align-items-center">
+						<div class="card-title">Nobatdaky gözegçiligiň maglumaty</div>
+						<button
+							class="btn btn-primary btn-round ml-auto"
+							data-toggle="modal"
+							data-target="#addReviewModal"
+						>
+							<i class="icofont-plus"></i>
+							Setir goş
+						</button>
+					</div>
 				</div>
 
 				<div class="card-body">
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label>Ady</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.name if data else '' }}"
-									placeholder="Ady"
-								/>
+					<div
+						class="modal fade"
+						id="addReviewModal"
+						tabindex="-1"
+						role="dialog"
+						aria-hidden="true"
+					>
+						<div class="modal-dialog" style="max-width: 1000px" role="document">
+							<div class="modal-content">
+								<div class="modal-header no-bd">
+									<h5 class="modal-title">
+										<span class="fw-mediumbold"> Täze</span>
+										<span class="fw-light"> Setir</span>
+									</h5>
+									<button
+										type="button"
+										class="close"
+										data-dismiss="modal"
+										aria-label="Close"
+									>
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p class="small">Täze gözegçilik maglumaty goş</p>
+									<form>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group form-group-default">
+													<label>Senesi</label>
+													<input
+														id="addName"
+														type="text"
+														class="form-control"
+														placeholder="Senesi"
+													/>
+												</div>
+											</div>
+											<div class="col-md-6 pr-0">
+												<div class="form-group form-group-default">
+													<label
+														>Anamez, ýüz tutmagy, obýektiw göz-ň netijesi</label
+													>
+													<input
+														id="addPosition"
+														type="text"
+														class="form-control"
+														placeholder="obýektiw göz-ň netijesi"
+													/>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group form-group-default">
+													<label>Bellik</label>
+													<input
+														id="addOffice"
+														type="text"
+														class="form-control"
+														placeholder="Bellik"
+													/>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer no-bd">
+									<button
+										type="button"
+										id="addRowButton"
+										class="btn btn-primary"
+									>
+										Goş
+									</button>
+									<button
+										type="button"
+										class="btn btn-danger"
+										data-dismiss="modal"
+									>
+										Ýap
+									</button>
+								</div>
 							</div>
 						</div>
-						<div class="col">
-							<div class="form-group">
-								<label>Harby bölüm</label>
-								<input
-									type="text"
-									class="form-control form-control-sm"
-									value="{{ data.name if data else '' }}"
-									placeholder="Harby bölüm"
-								/>
-							</div>
-						</div>
+					</div>
+
+					<div class="table-responsive">
+						<table id="add-row" class="display table table-striped table-hover">
+							<thead>
+								<tr>
+									<th class="text-center">Senesi</th>
+									<th class="text-center">
+										Anamez, ýüz tutmagy, obýektiw göz-ň netijesi
+									</th>
+									<th class="text-center">Bellik</th>
+									<th class="text-center" style="width: 5%">Amal</th>
+								</tr>
+							</thead>
+							<tbody class="table_data">
+								{% for item in data.Review %}
+								<tr class="item_row" owner_id="review_{{item.hex}}">
+									<td class="text-center">{{item.date}}</td>
+									<td class="text-center">{{item.result}}</td>
+									<td class="text-center">{{item.note}}</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="item_1"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="item_1"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
