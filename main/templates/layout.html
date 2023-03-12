@@ -99,12 +99,19 @@
 							<li>
 								<a href="{{ url_for('views.main') }}#gallery">Suratlar</a>
 							</li>
+							<li>
+								<a href="{{ url_for('views.main') }}#appointment"
+									>Barlaga ýazyl</a
+								>
+							</li>
 						</ul>
 					</nav>
 					<!-- .nav-menu -->
 
-					<a href="#appointment" class="appointment-btn scrollto"
-						>Barlaga ýazyl</a
+					<a
+						href="{{ url_for('views.people') }}"
+						class="appointment-btn scrollto"
+						>Hasabat</a
 					>
 				</div>
 			</header>

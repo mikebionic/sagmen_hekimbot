@@ -36,15 +36,15 @@
 						<div class="col-md-12 col-lg-6 d-flex" style="align-items: center">
 							<div class="avatar avatar-sm">
 								<span class="avatar-title rounded-circle border border-white"
-									>{{item.name[0].upper()}}{{item.surname[0].upper()}}</span
+									>{{item.name[0].upper() if item.name else
+									'.'}}{{item.surname[0].upper() if item.surname else
+									'.'}}</span
 								>
 							</div>
 							<div class="flex-1 row">
 								<div class="col">{{item.name}} {{item.surname}}</div>
 								<div class="col float-right" style="flex-direction: column">
-									<small class="text-muted"
-										>{{item.created_date.strftime("%d.%m.%Y")}}</small
-									>
+									<small class="text-muted">{{item.created_date}}</small>
 									<span class="text-warning pl-3">{{item.m_level}}</span>
 								</div>
 							</div>
@@ -68,7 +68,9 @@
 						<div class="col text-center">
 							<div class="avatar avatar-sm">
 								<span class="avatar-title rounded-circle border border-white"
-									>{{item.name[0].upper()}}{{item.surname[0].upper()}}</span
+									>{{item.name[0].upper() if item.name else
+									'.'}}{{item.surname[0].upper() if item.surname else
+									'.'}}</span
 								>
 							</div>
 							<div class="name">{{ item.name }} {{ item.surname }}</div>
@@ -80,7 +82,7 @@
 								<span>{{ item.m_level }}</span>
 							</div>
 							<p class="text-muted" style="text-align: left">
-								{{ item.birth_date.strftime("%d.%m.%Y") }}<br />
+								{{ item.birth_date }}<br />
 								{{ item.home_address }}<br />
 								{{ item.ehw_name }} <br />
 								<b>Bilimi:</b> {{ item.knowledge_level if item.knowledge_level

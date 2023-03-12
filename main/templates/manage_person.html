@@ -9,7 +9,9 @@
 						<div class="col text-center">
 							<div class="avatar avatar-sm">
 								<span class="avatar-title rounded-circle border border-white"
-									>{{data.name[0].upper()}}{{data.surname[0].upper()}}</span
+									>{{data.name[0].upper() if data.name else
+									'.'}}{{data.surname[0].upper() if data.surname else
+									'.'}}</span
 								>
 							</div>
 							<div class="name">{{ data.name }} {{ data.surname }}</div>
@@ -114,6 +116,7 @@
 										name="person_name"
 										value="{{ data.name if data else '' }}"
 										placeholder="Ady"
+										required
 									/>
 								</div>
 								<div class="form-group">
@@ -124,6 +127,7 @@
 										name="person_surname"
 										value="{{ data.surname if data else '' }}"
 										placeholder="Familiýasy"
+										required
 									/>
 								</div>
 								<div class="form-group">
@@ -139,12 +143,16 @@
 								<div class="form-group">
 									<label>Doglan senesi</label>
 									<input
-										type="text"
-										class="form-control form-control-sm"
-										name="person_birth_date"
-										value="{{ data.birth_date if data else '' }}"
+										type="datetime"
+										name="birth_date"
+										class="form-control form-control-sm datepicker"
+										id="person_birth_date"
 										placeholder="Doglan senesi"
+										data-rule="minlen:4"
+										data-msg="Please enter at least 4 chars"
+										value="{{ data.birth_date if data else '' }}"
 									/>
+									<div class="validate"></div>
 								</div>
 								<div class="form-group">
 									<label>Doglan ýeri</label>
@@ -555,7 +563,7 @@
 							</div>
 						</div>
 					</div>
-
+					{% if data %}
 					<div class="table-responsive">
 						<table id="add-row" class="display table table-striped table-hover">
 							<thead>
@@ -611,6 +619,7 @@
 							</tbody>
 						</table>
 					</div>
+					{% endif %}
 				</div>
 			</div>
 
@@ -639,9 +648,9 @@
 									<label>Barlag senesi</label>
 									<input
 										type="datetime"
-										name="date"
+										name="medical_first_review_date"
 										class="form-control form-control-sm datepicker"
-										id="date"
+										id="medical_first_review_date"
 										placeholder="Barlag senesi"
 										data-rule="minlen:4"
 										data-msg="Please enter at least 4 chars"
@@ -649,13 +658,6 @@
 									/>
 
 									<div class="validate"></div>
-									<!--<input
-										type="text"
-										class="form-control form-control-sm"
-										name="medical_first_review_date"
-										value="{{ data.Medical.first_review_date if data else '' }}"
-										placeholder="Barlag senesi"
-									/>-->
 								</div>
 								<div class="form-group">
 									<label>Allergiýa</label>
@@ -891,11 +893,16 @@
 												<div class="form-group form-group-default">
 													<label>Senesi</label>
 													<input
-														id="addName"
-														type="text"
-														class="form-control"
+														type="datetime"
+														name="N_date"
+														class="form-control form-control-sm datepicker"
+														id="N_date"
 														placeholder="Senesi"
+														data-rule="minlen:4"
+														data-msg="Please enter at least 4 chars"
 													/>
+
+													<div class="validate"></div>
 												</div>
 											</div>
 											<div class="col-md-6 pr-0">
@@ -945,6 +952,7 @@
 						</div>
 					</div>
 
+					{% if data %}
 					<div class="table-responsive">
 						<table id="add-row" class="display table table-striped table-hover">
 							<thead>
@@ -990,6 +998,7 @@
 							</tbody>
 						</table>
 					</div>
+					{% endif %}
 				</div>
 			</div>
 
