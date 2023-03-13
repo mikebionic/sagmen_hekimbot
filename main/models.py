@@ -12,7 +12,7 @@ def load_user(id):
 
 class User(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	username = db.Column(db.String(255))
 	name = db.Column(db.String)
@@ -80,6 +80,7 @@ class Person(db.Model):
 	Radiometry = db.relationship("Radiometry",backref='person',lazy=True)
 	Note = db.relationship("Note",backref='person',lazy=True)
 	Analysis = db.relationship("Analysis",backref='person',lazy=True)
+	Curing_record = db.relationship("Curing_record",backref='person',lazy=True)
 
 	def to_json(self):
 		return {
@@ -116,7 +117,7 @@ class Person(db.Model):
 
 class Physical(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -156,7 +157,7 @@ class Physical(db.Model):
 
 class Physical_review(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	height = db.Column(db.Integer)
@@ -192,7 +193,7 @@ class Physical_review(db.Model):
 
 class Medical_checkup(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -250,7 +251,7 @@ class Medical_checkup(db.Model):
 
 class Stomatology(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -272,7 +273,7 @@ class Stomatology(db.Model):
 
 class Review(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -298,7 +299,7 @@ class Review(db.Model):
 
 class Flurography(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -324,7 +325,7 @@ class Flurography(db.Model):
 
 class Vaccine(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -354,7 +355,7 @@ class Vaccine(db.Model):
 
 class Growth_result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -384,7 +385,7 @@ class Growth_result(db.Model):
 
 class Hospitalizing(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -410,7 +411,7 @@ class Hospitalizing(db.Model):
 
 class Radiometry(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -442,7 +443,7 @@ class Radiometry(db.Model):
 
 class Note(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -464,7 +465,7 @@ class Note(db.Model):
 
 class Analysis(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column("hex",db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -476,6 +477,97 @@ class Analysis(db.Model):
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
+
+
+class Hospital(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	name = db.Column(db.String)
+	location = db.Column(db.String)
+	address = db.Column(db.String)
+	color_code = db.Column(db.String)
+	note = db.Column(db.String)
+	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
+	Curing_record = db.relationship("Curing_record",backref='hospital',lazy=True)
+
+	def to_json(self):
+		return {
+			"id": self.id,
+			"hex": self.hex,
+			"name": self.name,
+			"location": self.location,
+			"address": self.address,
+			"color_code": self.color_code,
+			"note": self.note,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
+
+class Curing_record(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	note = db.Column(db.String)
+	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
+	hospital_id = db.Column(db.Integer,db.ForeignKey("hospital.id"))
+	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
+	enter_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
+	exit_date = db.Column(db.DateTime)
+	reason = db.Column(db.String)
+
+
+	def to_json(self):
+		return {
+			"id": self.id,
+			"hex": self.hex,
+			"note": self.note,
+			"person_id": self.person_id,
+			"hospital_id": self.hospital_id,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"enter_date": self.enter_date.strftime("%d.%m.%Y") if self.created_date else None, 
+			"exit_date": self.exit_date.strftime("%d.%m.%Y") if self.created_date else None, 
+			"reason": self.reason,
+		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
+
+class Drug(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	note = db.Column(db.String)
+	name = db.Column(db.String)
+	description = db.Column(db.String)
+	qty = db.Column(db.Integer)
+	qname = db.Column(db.String)
+	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
+	updated_date = db.Column(db.DateTime,nullable=False,default=datetime.now(),onupdate=datetime.now())
+
+	def to_json(self):
+		return {
+			"id": self.id,
+			"hex": self.hex,
+			"note": self.note,
+			"name": self.name,
+			"description": self.description,
+			"qty": self.qty,
+			"qname": self.qname,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"updated_date": self.updated_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 		}
 
 	def update(self, **kwargs):

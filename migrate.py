@@ -1,6 +1,6 @@
 from main import db, create_app
 from main.config import Config
-from main.models import User, Physical, Medical_checkup, Person
+from main.models import Curing_record, Drug, Hospital, User, Physical, Medical_checkup, Person
 
 from datetime import datetime
 
@@ -139,7 +139,7 @@ p_count = 0
 for person in persons_data:
 	current_person = Person(**person)
 	db.session.add(current_person)
-	db.session.commit()
+
 	if p_count < len(physicals_data):
 		physicals_data[p_count]["person_id"] = current_person.id ##p_count ##
 		mcheckups_data[p_count]["person_id"] = current_person.id ##p_count ##
@@ -149,9 +149,101 @@ for person in persons_data:
 for physical in physicals_data:
 	current_physical = Physical(**physical)
 	db.session.add(current_physical)
-	db.session.commit()
 
 for mcheckup in mcheckups_data:
 	current_mcheckup = Medical_checkup(**mcheckup)
 	db.session.add(current_mcheckup)
-	db.session.commit()
+
+
+hospitals_data = [
+	{
+		"name": "Lukmançylyk nokady",
+		"location": "",
+		"address": "Jaňga",
+		"color_code": "#FF9E27",
+		"note": "",
+	},
+	{
+		"name": "Türkmenbaşy Hassahana",
+		"location": "",
+		"address": "Türkmenbaşy",
+		"color_code": "#F25961",
+		"note": "",
+	},
+	{
+		"name": "Aşgabat Hassahana",
+		"location": "",
+		"address": "Aşgabat",
+		"color_code": "#F25961",
+		"note": "",
+	}
+]
+
+for hospital in hospitals_data:
+	current_hospital = Hospital(**hospital)
+	db.session.add(current_hospital)
+
+
+drugs_data = [
+	{
+		"note": "",
+		"name": "Trimol",
+		"description": "Agyry aýyrýar",
+		"qty": 24,
+		"qname": "tabletka",
+	},
+	{
+		"note": "",
+		"name": "Suprastin",
+		"description": "Allergiýa garşy",
+		"qty": 83,
+		"qname": "tabletka",
+	},
+	{
+		"note": "",
+		"name": "Noşpa",
+		"description": "Iç geçmegi garşy",
+		"qty": 4,
+		"qname": "korobka",
+	},
+	{
+		"note": "",
+		"name": "Demidrol",
+		"description": "Gyzgynlyga garşy",
+		"qty": 90,
+		"qname": "ampula",
+	}
+]
+
+
+for drug in drugs_data:
+	current_drug = Drug(**drug)
+	db.session.add(current_drug)
+
+
+
+
+curingrs_data = [
+	{
+		"note": "",
+		"person_id": 1,
+		"hospital_id": 3,
+		"enter_date": datetime(2023,3,11),
+		"reason": "Dyrnak kesdirildi",
+	},
+	{
+		"note": "",
+		"person_id": 2,
+		"hospital_id": 1,
+		"enter_date": datetime(2023,3,8),
+		"exit_date": datetime(2023,3,10),
+		"reason": "Gyzdyrma",
+	},
+]
+
+for curingr in curingrs_data:
+	current_curingr = Curing_record(**curingr)
+	db.session.add(current_curingr)
+
+
+db.session.commit()
