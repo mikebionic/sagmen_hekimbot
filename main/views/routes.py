@@ -11,7 +11,8 @@ from main.views.req_utils import (
 )
 from main.views.data_utils import (
 	build_person_data,
-	get_hospital_list
+	get_hospital_list,
+	get_drugs_list
 )
 from main.models import Person
 from main import db
@@ -26,12 +27,18 @@ def main():
 
 @bp.route("/person_table/<id>")
 def person_table(id):
-	person = Person.query.filter_by(deleted = 0, id = id).first()
+	person = Person.query\
+		.filter_by(deleted = 0, id = id)\
+		.order_by(Person.created_date.desc())\
+		.first()
 	return render_template("person_table.html", data=build_person_data(person))
 
 @bp.route("/people")
 def people():
-	people = Person.query.filter_by(deleted = 0).all()
+	people = Person.query\
+		.filter_by(deleted = 0)\
+		.order_by(Person.created_date.desc())\
+		.all()
 	return render_template(
 		"people.html",
 		data=[build_person_data(person) for person in people]
@@ -44,7 +51,10 @@ def manage_person(id=None):
 	if not id:
 		return render_template("manage_person.html")
 
-	person = Person.query.filter_by(deleted = 0, id = id).first()
+	person = Person.query\
+		.filter_by(deleted = 0, id = id)\
+		.order_by(Person.created_date.desc())\
+		.first()
 	return render_template("manage_person.html", data=build_person_data(person))
 
 @bp.post("/manage_person/")
@@ -57,7 +67,10 @@ def manage_person_post():
 def manage_person_delete(hex):
 	if not hex:
 		return redirect(url_for('views.people'))
-	person = Person.query.filter_by(hex = hex).first()
+	person = Person.query\
+		.filter_by(hex = hex)\
+		.order_by(Person.created_date.desc())\
+		.first()
 	if person:
 		person.deleted = 1
 		db.session.commit()
@@ -83,3 +96,9 @@ def get_curing_records():
 	print(data)
 	print([item.to_json() for item in data])
 	return "ok"
+
+
+@bp.get("/drugs/")
+def get_drugs():
+	data = get_drugs_list()
+	return render_template("drugs_table.html", data = data)

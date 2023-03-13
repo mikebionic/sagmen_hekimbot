@@ -13,6 +13,7 @@ from main.models import (
 	Radiometry,
 	Note,
 	Analysis,
+	Drug,
 )
 from main import db
 from datetime import datetime
@@ -40,3 +41,11 @@ def get_hospital_list():
 		Curing_record.exit_date == None)
 	).all()
 	return h
+
+def get_drugs_list():
+	drugs_data = Drug.query\
+		.filter_by(deleted = 0)\
+		.order_by(Drug.created_date.desc())\
+		.all()
+	
+	return [data.to_json() for data in drugs_data]
