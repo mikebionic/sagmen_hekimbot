@@ -9,8 +9,12 @@ from main.views.req_utils import (
 	manage_physical_data,
 	manage_medical_data
 )
+from main.views.data_utils import (
+	build_person_data,
+	get_hospital_list
+)
 from main.models import Person
-
+from main import db
 from . import bp
 
 
@@ -22,32 +26,17 @@ def main():
 
 @bp.route("/person_table/<id>")
 def person_table(id):
-	person = Person.query.get_or_404(id)
+	person = Person.query.filter_by(deleted = 0, id = id).first()
 	return render_template("person_table.html", data=build_person_data(person))
 
 @bp.route("/people")
 def people():
-	people = Person.query.all()
+	people = Person.query.filter_by(deleted = 0).all()
 	return render_template(
 		"people.html",
 		data=[build_person_data(person) for person in people]
 	)
 
-def build_person_data(person):
-	data = person.to_json()
-	data["Physical"] = person.Physical[-1].to_json() if person.Physical else {}
-	data["Physical_review"] = [this_data.to_json() for this_data in person.Physical_review] if person.Hospitalizing else {}
-	data["Medical"] = person.Medical_checkup[-1].to_json() if person.Medical_checkup else {}
-	data["Stomatology"] = person.Stomatology[-1].to_json() if person.Stomatology else {}
-	data["Review"] = [this_data.to_json() for this_data in person.Review] if person.Review else {}
-	data["Flurography"] = person.Flurography[-1].to_json() if person.Flurography else {}
-	data["Vaccine"] = [this_data.to_json() for this_data in person.Vaccine] if person.Vaccine else {}
-	data["Growth_result"] = [this_data.to_json() for this_data in person.Growth_result] if person.Growth_result else {}
-	data["Hospitalizing"] = [this_data.to_json() for this_data in person.Hospitalizing] if person.Hospitalizing else {}
-	data["Radiometry"] = [this_data.to_json() for this_data in person.Radiometry] if person.Radiometry else {}
-	data["Note"] = [this_data.to_json() for this_data in person.Note] if person.Note else {}
-	data["Analysis"] = [this_data.to_json() for this_data in person.Analysis] if person.Analysis else {}
-	return data
 
 @bp.get("/manage_person/")
 @bp.get("/manage_person/<id>")
@@ -55,7 +44,7 @@ def manage_person(id=None):
 	if not id:
 		return render_template("manage_person.html")
 
-	person = Person.query.get_or_404(id)
+	person = Person.query.filter_by(deleted = 0, id = id).first()
 	return render_template("manage_person.html", data=build_person_data(person))
 
 @bp.post("/manage_person/")
@@ -63,6 +52,17 @@ def manage_person_post():
 	req_data = dict(request.form).copy()
 	this_model = manage_person_data(req_data)
 	return redirect(url_for('views.manage_person',id=this_model.id))
+
+@bp.get("/manage_person/delete/<hex>/")
+def manage_person_delete(hex):
+	if not hex:
+		return redirect(url_for('views.people'))
+	person = Person.query.filter_by(hex = hex).first()
+	if person:
+		person.deleted = 1
+		db.session.commit()
+	return redirect(url_for('views.people'))
+
 
 @bp.post("/manage_person/physical/")
 def manage_physical():
@@ -76,3 +76,10 @@ def manage_medical():
 	this_model = manage_medical_data(req_data)
 	return redirect(url_for('views.manage_person',id=this_model.person_id))
 
+
+@bp.get("/curing_records/")
+def get_curing_records():
+	data = get_hospital_list()
+	print(data)
+	print([item.to_json() for item in data])
+	return "ok"

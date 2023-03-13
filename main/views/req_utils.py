@@ -16,10 +16,10 @@ from main.models import (
 from main import db
 from datetime import datetime
 
-def manage_person_data(req_data):
+def manage_person_data(req_data, action=None):
 	insertion_data = {}
-	if "person_hex" in req_data:
-		insertion_data["hex"] = req_data["person_hex"]
+	#if "person_hex" in req_data:
+	#	insertion_data["hex"] = req_data["person_hex"]
 	if "person_name" in req_data:
 		insertion_data["name"] = req_data["person_name"]
 	if "person_surname" in req_data:
@@ -48,6 +48,10 @@ def manage_person_data(req_data):
 		insertion_data["m_job"] = req_data["person_m_job"]
 	if "person_m_place" in req_data:
 		insertion_data["m_place"] = req_data["person_m_place"]
+	
+	if action == "delete":
+		print("deleting.......")
+		insertion_data["deleted"] = 1
 
 	if "person_hex" in req_data:
 		this_model = Person.query.filter_by(hex = req_data["person_hex"]).first()

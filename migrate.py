@@ -17,6 +17,7 @@ admin_user = User(
 	position="admin"
 )
 db.session.add(admin_user)
+db.session.commit()
 
 users_data = [
 	{
@@ -41,6 +42,7 @@ users_data = [
 for user in users_data:
 	current_user = User(**user)
 	db.session.add(current_user)
+	db.session.commit()
 
 
 persons_data = [
@@ -139,6 +141,7 @@ p_count = 0
 for person in persons_data:
 	current_person = Person(**person)
 	db.session.add(current_person)
+	db.session.commit()
 
 	if p_count < len(physicals_data):
 		physicals_data[p_count]["person_id"] = current_person.id ##p_count ##
@@ -149,10 +152,12 @@ for person in persons_data:
 for physical in physicals_data:
 	current_physical = Physical(**physical)
 	db.session.add(current_physical)
+	db.session.commit()
 
 for mcheckup in mcheckups_data:
 	current_mcheckup = Medical_checkup(**mcheckup)
 	db.session.add(current_mcheckup)
+	db.session.commit()
 
 
 hospitals_data = [
@@ -182,6 +187,7 @@ hospitals_data = [
 for hospital in hospitals_data:
 	current_hospital = Hospital(**hospital)
 	db.session.add(current_hospital)
+	db.session.commit()
 
 
 drugs_data = [
@@ -219,6 +225,7 @@ drugs_data = [
 for drug in drugs_data:
 	current_drug = Drug(**drug)
 	db.session.add(current_drug)
+	db.session.commit()
 
 
 
@@ -244,6 +251,7 @@ curingrs_data = [
 for curingr in curingrs_data:
 	current_curingr = Curing_record(**curingr)
 	db.session.add(current_curingr)
+	db.session.commit()
 
 
 db.session.commit()

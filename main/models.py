@@ -13,6 +13,7 @@ def load_user(id):
 class User(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	username = db.Column(db.String(255))
 	name = db.Column(db.String)
@@ -26,6 +27,7 @@ class User(db.Model, UserMixin):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"username": self.username,
 			"name": self.name,
 			"surname": self.surname,
@@ -45,6 +47,7 @@ class User(db.Model, UserMixin):
 class Person(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex)
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
 	date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -86,6 +89,7 @@ class Person(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note":self.note,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 			"name": self.name,
@@ -118,6 +122,7 @@ class Person(db.Model):
 class Physical(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -135,6 +140,7 @@ class Physical(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -158,6 +164,7 @@ class Physical(db.Model):
 class Physical_review(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	height = db.Column(db.Integer)
@@ -173,6 +180,7 @@ class Physical_review(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"height": self.height,
@@ -194,6 +202,7 @@ class Physical_review(db.Model):
 class Medical_checkup(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -220,6 +229,7 @@ class Medical_checkup(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -252,6 +262,7 @@ class Medical_checkup(db.Model):
 class Stomatology(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -260,6 +271,7 @@ class Stomatology(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -274,6 +286,7 @@ class Stomatology(db.Model):
 class Review(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -284,6 +297,7 @@ class Review(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -300,6 +314,7 @@ class Review(db.Model):
 class Flurography(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -310,6 +325,7 @@ class Flurography(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -326,6 +342,7 @@ class Flurography(db.Model):
 class Vaccine(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -338,6 +355,7 @@ class Vaccine(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -356,6 +374,7 @@ class Vaccine(db.Model):
 class Growth_result(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -368,6 +387,7 @@ class Growth_result(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -386,6 +406,7 @@ class Growth_result(db.Model):
 class Hospitalizing(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -396,6 +417,7 @@ class Hospitalizing(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -412,6 +434,7 @@ class Hospitalizing(db.Model):
 class Radiometry(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -425,6 +448,7 @@ class Radiometry(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -444,6 +468,7 @@ class Radiometry(db.Model):
 class Note(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -452,6 +477,7 @@ class Note(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -466,6 +492,7 @@ class Note(db.Model):
 class Analysis(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
@@ -474,6 +501,7 @@ class Analysis(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
@@ -489,6 +517,7 @@ class Analysis(db.Model):
 class Hospital(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	name = db.Column(db.String)
 	location = db.Column(db.String)
 	address = db.Column(db.String)
@@ -501,6 +530,7 @@ class Hospital(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"name": self.name,
 			"location": self.location,
 			"address": self.address,
@@ -518,6 +548,7 @@ class Hospital(db.Model):
 class Curing_record(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	person_id = db.Column(db.Integer,db.ForeignKey("person.id"))
 	hospital_id = db.Column(db.Integer,db.ForeignKey("hospital.id"))
@@ -531,12 +562,13 @@ class Curing_record(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"person_id": self.person_id,
 			"hospital_id": self.hospital_id,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
-			"enter_date": self.enter_date.strftime("%d.%m.%Y") if self.created_date else None, 
-			"exit_date": self.exit_date.strftime("%d.%m.%Y") if self.created_date else None, 
+			"enter_date": self.enter_date.strftime("%d.%m.%Y") if self.enter_date else None, 
+			"exit_date": self.exit_date.strftime("%d.%m.%Y") if self.exit_date else None, 
 			"reason": self.reason,
 		}
 
@@ -549,6 +581,7 @@ class Curing_record(db.Model):
 class Drug(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	name = db.Column(db.String)
 	description = db.Column(db.String)
@@ -561,6 +594,7 @@ class Drug(db.Model):
 		return {
 			"id": self.id,
 			"hex": self.hex,
+			"deleted": self.deleted,
 			"note": self.note,
 			"name": self.name,
 			"description": self.description,
