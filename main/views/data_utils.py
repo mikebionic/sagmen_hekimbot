@@ -45,7 +45,7 @@ def get_hospital_list():
 def get_drugs_list():
 	drugs_data = Drug.query\
 		.filter_by(deleted = 0)\
-		.order_by(Drug.created_date.desc())\
+		.order_by(Drug.updated_date.desc())\
 		.all()
 	
 	return [data.to_json() for data in drugs_data]

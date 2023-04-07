@@ -580,7 +580,7 @@ class Curing_record(db.Model):
 
 class Drug(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	hex = db.Column(db.String,nullable=False,default=datetime.now().timestamp())
 	deleted = db.Column(db.Integer,nullable=False,default=0)
 	note = db.Column(db.String)
 	name = db.Column(db.String)

@@ -2,6 +2,8 @@ from main import db, create_app
 from main.config import Config
 from main.models import Curing_record, Drug, Hospital, User, Physical, Medical_checkup, Person
 
+import secrets
+from random import randint
 from datetime import datetime
 
 
@@ -193,48 +195,56 @@ for hospital in hospitals_data:
 drugs_data = [
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Sol.Natriý hlorid 0.9% 250.0",
 		"qty": 10,
 		"unit": "fl",
 	},
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Sol.Ringer 250.0",
 		"qty": 32,
 		"unit": "fl",
 	},
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Sol.Nowokain 5.0 N10",
 		"qty": 3,
 		"unit": "gap",
 	},
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Sol.Magniý sulsut 5.0 N10",
 		"qty": 3,
 		"unit": "gap",
 	},
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Rimantadin 50mg N20",
 		"qty": 10,
 		"unit": "gap",
 	},
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Sistema",
 		"qty": 50,
 		"unit": "san",
 	},
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Şpris 2.0",
 		"qty": 100,
 		"unit": "tabletka",
 	},
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Şpris 10.0",
 		"qty": 100,
 		"unit": "san",
@@ -242,6 +252,7 @@ drugs_data = [
 
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Trimol",
 		"description": "Agyry aýyrýar",
 		"qty": 24,
@@ -249,6 +260,7 @@ drugs_data = [
 	},
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Suprastin",
 		"description": "Allergiýa garşy",
 		"qty": 83,
@@ -256,6 +268,7 @@ drugs_data = [
 	},
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Noşpa",
 		"description": "Iç geçmegi garşy",
 		"qty": 4,
@@ -263,6 +276,7 @@ drugs_data = [
 	},
 	{
 		"note": "",
+		"hex": secrets.token_hex(randint(9,15)),
 		"name": "Demidrol",
 		"description": "Gyzgynlyga garşy",
 		"qty": 90,
