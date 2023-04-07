@@ -41,9 +41,9 @@
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<div class="modal-body">
-									<p class="small">Täze gözegçilik maglumaty goş</p>
-									<form>
+								<form>
+									<div class="modal-body">
+										<p class="small">Täze gözegçilik maglumaty goş</p>
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="form-group form-group-default">
@@ -54,21 +54,17 @@
 														type="text"
 														class="form-control"
 														placeholder="Ady"
+														required
 													/>
+													<input
+														id="manage_drug_hex"
+														type="hidden"
+														/>
 
 													<div class="validate"></div>
 												</div>
 											</div>
 											<div class="col-md-6 pr-0">
-												<div class="form-group form-group-default">
-													<label>Düşündiriş</label>
-													<input
-														id="manage_drug_description"
-														type="text"
-														class="form-control"
-														placeholder="Düşündiriş"
-													/>
-												</div>
 												<div class="form-group form-group-default">
 													<label>Bellik</label>
 													<input
@@ -87,37 +83,39 @@
 														type="text"
 														class="form-control"
 														placeholder="San"
+														required
 													/>
 												</div>
 												<div class="form-group form-group-default">
-													<label>Ölçegi</label>
+													<label>Ölçeg birligi</label>
 													<input
-														id="manage_drug_qname"
+														id="manage_drug_unit"
 														type="text"
 														class="form-control"
-														placeholder="Ölçegi"
+														placeholder="Ölçeg birligi"
+														required
 													/>
 												</div>
 											</div>
 										</div>
-									</form>
-								</div>
-								<div class="modal-footer no-bd">
-									<button
-										type="button"
-										id="addDrugsRowButton"
-										class="btn btn-primary"
-									>
-										Goş
-									</button>
-									<button
-										type="button"
-										class="btn btn-danger"
-										data-dismiss="modal"
-									>
-										Ýap
-									</button>
-								</div>
+									</div>
+									<div class="modal-footer no-bd">
+										<button
+											type="button"
+											id="addDrugsRowButton"
+											class="btn btn-primary"
+										>
+											Goş
+										</button>
+										<button
+											type="button"
+											class="btn btn-danger"
+											data-dismiss="modal"
+										>
+											Ýap
+										</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -128,19 +126,20 @@
 							<thead>
 								<tr>
 									<th class="text-center">Ady</th>
-									<th class="text-center">Düşündiriş</th>
+									<th class="text-center">Ölçeg birlik</th>
 									<th class="text-center">San</th>
 									<th class="text-center">Bellik</th>
 									<th class="text-center" style="width: 5%">Amal</th>
 								</tr>
 							</thead>
-							<tbody class="table_data">
+							<tbody class="table_data drug_table_rows">
 								{% for item in data %}
-								<tr class="item_row" owner_id="review_{{item.hex}}">
-									<td class="text-center">{{item.name}}</td>
-									<td class="text-center">{{item.description}}</td>
-									<td class="text-center">{{item.qty}} {{item.qname}}</td>
-									<td class="text-center">{{item.note}}</td>
+								<tr class="item_row" owner_id="drug_{{item.hex}}">
+									<td class="text-center name">{{item.name}}</td>
+									<input type="hidden" class="hex" value="{{item.hex}}" />
+									<td class="text-center unit">{{item.unit}}</td>
+									<td class="text-center qty">{{item.qty}}</td>
+									<td class="text-center note">{{item.note}}</td>
 									<td class="text-center">
 										<div class="form-button-action">
 											<button
@@ -148,7 +147,7 @@
 												data-toggle="tooltip"
 												title=""
 												class="btn btn-link btn-primary btn-lg edit_btn"
-												owner_id="item_1"
+												owner_id="drug_{{item.hex}}"
 											>
 												<i class="icofont-edit"></i>
 											</button>
@@ -157,7 +156,7 @@
 												data-toggle="tooltip"
 												title=""
 												class="btn btn-link btn-danger remove_btn"
-												owner_id="item_1"
+												owner_id="drug_{{item.hex}}"
 											>
 												<i class="icofont-bin"></i>
 											</button>
@@ -175,64 +174,5 @@
 	</div>
 </section>
 {% endblock %} {% block scripts %}
-<script>
-	$(document).ready(function () {
-		var action =
-			'<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg edit_btn"  owner_id="> <i class="icofont-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger remove_btn" owner_id=> <i class="icofont-bin"></i> </button> </div> </td>';
-
-		$("body").delegate("#addDrugsRowButton", "click", function (e) {
-			console.log(e);
-			const payload = {
-				note: $("#manage_drug_note").val(),
-				name: $("#manage_drug_name").val(),
-				description: $("#manage_drug_description").val(),
-				qty: $("#manage_drug_qty").val(),
-				qname: $("#manage_drug_qname").val(),
-			};
-			console.log(payload);
-			//fetch Func
-		});
-	});
-
-	//	$(".table_data").prepend(
-	//		construct_table_row({
-	//			name: $("#addName").val(),
-	//			position: $("#addPosition").val(),
-	//			office: $("#addOffice").val(),
-	//		})
-	//	);
-	//	$("#addDrugsRowModal").modal("hide");
-
-	$("body").delegate(".remove_btn", "click", function (e) {
-		$(`.item_row[owner_id="${$(this).attr("owner_id")}"]`).remove();
-	});
-
-	const construct_table_row = (data) => `<tr class="item_row" owner_id="item_1">
-		<td class="text-center">${data.name}</td>
-		<td class="text-center">${data.position}</td>
-		<td class="text-center">${data.office}</td>
-		<td class="text-center">
-			<div class="form-button-action">
-				<button
-					type="button"
-					data-toggle="tooltip"
-					title=""
-					class="btn btn-link btn-primary btn-lg edit_btn"
-					owner_id="item_1"
-				>
-					<i class="icofont-edit"></i>
-				</button>
-				<button
-					type="button"
-					data-toggle="tooltip"
-					title=""
-					class="btn btn-link btn-danger remove_btn"
-					owner_id="item_1"
-				>
-					<i class="icofont-bin"></i>
-				</button>
-			</div>
-		</td>
-	</tr>`;
-</script>
+<script src="{{ url_for('static', filename='drug_table.js') }}"></script>
 {% endblock %}

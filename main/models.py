@@ -586,7 +586,7 @@ class Drug(db.Model):
 	name = db.Column(db.String)
 	description = db.Column(db.String)
 	qty = db.Column(db.Integer)
-	qname = db.Column(db.String)
+	unit = db.Column(db.String)
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
 	updated_date = db.Column(db.DateTime,nullable=False,default=datetime.now(),onupdate=datetime.now())
 
@@ -599,7 +599,64 @@ class Drug(db.Model):
 			"name": self.name,
 			"description": self.description,
 			"qty": self.qty,
-			"qname": self.qname,
+			"unit": self.unit,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"updated_date": self.updated_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
+
+class Drug_inv(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
+	note = db.Column(db.String)
+	name = db.Column(db.String)
+	unit = db.Column(db.String)
+	qty_sent = db.Column(db.Integer)
+	qty_received = db.Column(db.Integer)
+	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
+	updated_date = db.Column(db.DateTime,nullable=False,default=datetime.now(),onupdate=datetime.now())
+
+	def to_json(self):
+		return {
+			"id": self.id,
+			"hex": self.hex,
+			"deleted": self.deleted,
+			"note": self.note,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"updated_date": self.updated_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
+
+class Drug_inv_line(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column(db.String,default=secrets.token_hex(randint(9,15)))
+	deleted = db.Column(db.Integer,nullable=False,default=0)
+	note = db.Column(db.String)
+	name = db.Column(db.String)
+	unit = db.Column(db.String)
+	qty_sent = db.Column(db.Integer)
+	qty_received = db.Column(db.Integer)
+	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
+	updated_date = db.Column(db.DateTime,nullable=False,default=datetime.now(),onupdate=datetime.now())
+
+	def to_json(self):
+		return {
+			"id": self.id,
+			"hex": self.hex,
+			"deleted": self.deleted,
+			"note": self.note,
+			"name": self.name,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 			"updated_date": self.updated_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 		}

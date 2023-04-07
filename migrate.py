@@ -193,31 +193,80 @@ for hospital in hospitals_data:
 drugs_data = [
 	{
 		"note": "",
+		"name": "Sol.Natriý hlorid 0.9% 250.0",
+		"qty": 10,
+		"unit": "fl",
+	},
+	{
+		"note": "",
+		"name": "Sol.Ringer 250.0",
+		"qty": 32,
+		"unit": "fl",
+	},
+	{
+		"note": "",
+		"name": "Sol.Nowokain 5.0 N10",
+		"qty": 3,
+		"unit": "gap",
+	},
+	{
+		"note": "",
+		"name": "Sol.Magniý sulsut 5.0 N10",
+		"qty": 3,
+		"unit": "gap",
+	},
+	{
+		"note": "",
+		"name": "Rimantadin 50mg N20",
+		"qty": 10,
+		"unit": "gap",
+	},
+	{
+		"note": "",
+		"name": "Sistema",
+		"qty": 50,
+		"unit": "san",
+	},
+	{
+		"note": "",
+		"name": "Şpris 2.0",
+		"qty": 100,
+		"unit": "tabletka",
+	},
+	{
+		"note": "",
+		"name": "Şpris 10.0",
+		"qty": 100,
+		"unit": "san",
+	},
+
+	{
+		"note": "",
 		"name": "Trimol",
 		"description": "Agyry aýyrýar",
 		"qty": 24,
-		"qname": "tabletka",
+		"unit": "tabletka",
 	},
 	{
 		"note": "",
 		"name": "Suprastin",
 		"description": "Allergiýa garşy",
 		"qty": 83,
-		"qname": "tabletka",
+		"unit": "tabletka",
 	},
 	{
 		"note": "",
 		"name": "Noşpa",
 		"description": "Iç geçmegi garşy",
 		"qty": 4,
-		"qname": "korobka",
+		"unit": "korobka",
 	},
 	{
 		"note": "",
 		"name": "Demidrol",
 		"description": "Gyzgynlyga garşy",
 		"qty": 90,
-		"qname": "ampula",
+		"unit": "ampula",
 	}
 ]
 

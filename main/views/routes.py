@@ -11,8 +11,7 @@ from main.views.req_utils import (
 )
 from main.views.data_utils import (
 	build_person_data,
-	get_hospital_list,
-	get_drugs_list
+	get_hospital_list
 )
 from main.models import Person
 from main import db
@@ -96,9 +95,3 @@ def get_curing_records():
 	print(data)
 	print([item.to_json() for item in data])
 	return "ok"
-
-
-@bp.get("/drugs/")
-def get_drugs():
-	data = get_drugs_list()
-	return render_template("drugs_table.html", data = data)
