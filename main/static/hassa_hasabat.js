@@ -22,6 +22,7 @@ const get_in_loc_clinic_async = async () => {
 
 const curing_ui = async () => {
     let data = await get_curing_async();
+    await $(".hassa_hasabat_circles div").remove()
     data.data.map((item) => {
         if (!item.deleted){
             $(".hassa_hasabat_circles").append(create_circle_layer(item))
@@ -41,10 +42,12 @@ const curing_ui = async () => {
             });
         }
     })
-    // console.log(data)
-
 }
+
 curing_ui()
+setInterval(() => {
+    curing_ui()
+}, 6000);
 
 const create_circle_layer = (item) => {
     return `
@@ -59,12 +62,17 @@ const create_circle_layer = (item) => {
 
 const loc_clinic_ui = async () => {
     let data = await get_in_loc_clinic_async();
+    await $(".me_loc_clinic_list div").remove()
     data.data.map((item) => {
         $(".me_loc_clinic_list").append(create_person_badge(item))
     })
     // console.log(data)
 }
+
 loc_clinic_ui()
+setInterval(() => {
+    loc_clinic_ui()
+}, 6000);
 
 // ${item.name[0].upper() if item.name else
 //     '.'}${item.surname[0].upper() if item.surname else

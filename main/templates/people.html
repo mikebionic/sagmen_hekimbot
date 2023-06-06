@@ -6,16 +6,19 @@
 				<div class="card-body">
 					<div class="card-title">Umumy maglumat</div>
 					<div class="card-category">Şahsy düzüminiň saglyk maglumaty</div>
-					<div class="d-flex flex-wrap justify-content-around pb-2 pt-4 hassa_hasabat_circles">
-						
-					</div>
+					<div class="d-flex flex-wrap justify-content-around pb-2 pt-4 hassa_hasabat_circles"></div>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="card full-height">
 				<div class="card-body">
-					<div class="card-title">Saglyk öýde ýatyrylanlar</div>
+					<div class="card-title">
+						<a href="{{ url_for('views.manage_person') }}">
+							Saglyk öýde ýatyrylanlar
+							<i class="bx bx-edit me_hoverselectable"></i>
+						</a>
+					</div>
 					<div class="row me_loc_clinic_list">
 					</div>
 				</div>
@@ -29,7 +32,7 @@
 			class="col-lg-3 col-md-6 col-sm-6 person_card"
 			url="{{ url_for('views.manage_person', id=item.id) }}"
 		>
-			<div class="card">
+			<div class="card me_hoverselectable">
 				<div class="card-body">
 					<div class="user-profile row">
 						<div class="col text-center">
