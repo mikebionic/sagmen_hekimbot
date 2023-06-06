@@ -6,23 +6,8 @@
 				<div class="card-body">
 					<div class="card-title">Umumy maglumat</div>
 					<div class="card-category">Şahsy düzüminiň saglyk maglumaty</div>
-					<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-						<div class="px-2 pb-2 pb-md-0 text-center">
-							<div id="circles-1"></div>
-							<h6 class="fw-bold mt-3 mb-0">Işjeň</h6>
-						</div>
-						<div class="px-2 pb-2 pb-md-0 text-center">
-							<div id="circles-2"></div>
-							<h6 class="fw-bold mt-3 mb-0">Lukmançylyk nokady</h6>
-						</div>
-						<div class="px-2 pb-2 pb-md-0 text-center">
-							<div id="circles-3"></div>
-							<h6 class="fw-bold mt-3 mb-0">Harby hassahana</h6>
-						</div>
-						<div class="px-2 pb-2 pb-md-0 text-center">
-							<div id="circles-4"></div>
-							<h6 class="fw-bold mt-3 mb-0">Aşgabat hassahana</h6>
-						</div>
+					<div class="d-flex flex-wrap justify-content-around pb-2 pt-4 hassa_hasabat_circles">
+						
 					</div>
 				</div>
 			</div>
@@ -31,25 +16,7 @@
 			<div class="card full-height">
 				<div class="card-body">
 					<div class="card-title">Saglyk öýde ýatyrylanlar</div>
-					<div class="row">
-						{% for item in data %}
-						<div class="col-md-12 col-lg-6 d-flex" style="align-items: center">
-							<div class="avatar avatar-sm">
-								<span class="avatar-title rounded-circle border border-white"
-									>{{item.name[0].upper() if item.name else
-									'.'}}{{item.surname[0].upper() if item.surname else
-									'.'}}</span
-								>
-							</div>
-							<div class="flex-1 row">
-								<div class="col">{{item.name}} {{item.surname}}</div>
-								<div class="col float-right" style="flex-direction: column">
-									<small class="text-muted">{{item.created_date}}</small>
-									<span class="text-warning pl-3">{{item.m_level}}</span>
-								</div>
-							</div>
-						</div>
-						{% endfor %}
+					<div class="row me_loc_clinic_list">
 					</div>
 				</div>
 			</div>
@@ -167,69 +134,9 @@
 	</div>
 </section>
 
-<a href="{{ url_for('views.manage_person') }}" class="floating-add-cross"
-	><i class="bx bx-edit"></i
-></a>
+<a href="{{ url_for('views.manage_person') }}" class="floating-add-cross"><i class="bx bx-edit"></i></a>
 <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 {% endblock %} {% block scripts %}
-<script>
-	Circles.create({
-		id: "circles-1",
-		radius: 45,
-		value: 90,
-		maxValue: 100,
-		width: 7,
-		text: 423,
-		colors: ["#f1f1f1", "#2BB930"],
-		duration: 400,
-		wrpClass: "circles-wrp",
-		textClass: "circles-text",
-		styleWrapper: true,
-		styleText: true,
-	});
 
-	Circles.create({
-		id: "circles-2",
-		radius: 45,
-		value: 13,
-		maxValue: 100,
-		width: 7,
-		text: 2,
-		colors: ["#f1f1f1", "#FF9E27"],
-		duration: 400,
-		wrpClass: "circles-wrp",
-		textClass: "circles-text",
-		styleWrapper: true,
-		styleText: true,
-	});
-
-	Circles.create({
-		id: "circles-3",
-		radius: 45,
-		value: 40,
-		maxValue: 100,
-		width: 7,
-		text: 12,
-		colors: ["#f1f1f1", "#F25961"],
-		duration: 400,
-		wrpClass: "circles-wrp",
-		textClass: "circles-text",
-		styleWrapper: true,
-		styleText: true,
-	});
-	Circles.create({
-		id: "circles-4",
-		radius: 45,
-		value: 3,
-		maxValue: 100,
-		width: 7,
-		text: 2,
-		colors: ["#f1f1f1", "#F25961"],
-		duration: 400,
-		wrpClass: "circles-wrp",
-		textClass: "circles-text",
-		styleWrapper: true,
-		styleText: true,
-	});
-</script>
+<script src="{{url_for('static', filename='hassa_hasabat.js')}}"></script>
 {% endblock %}

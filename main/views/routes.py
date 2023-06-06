@@ -11,7 +11,8 @@ from main.views.req_utils import (
 )
 from main.views.data_utils import (
 	build_person_data,
-	get_hospital_list
+	get_hospital_list,
+	get_loc_clinic_list
 )
 from main.models import Person
 from main import db
@@ -91,7 +92,10 @@ def manage_medical():
 
 @bp.get("/curing_records/")
 def get_curing_records():
-	data = get_hospital_list()
-	print(data)
-	print([item.to_json() for item in data])
-	return "ok"
+	return get_hospital_list()
+	
+
+@bp.get("/in_local_clinic/")
+def get_in_local_clinic():
+	return get_loc_clinic_list()
+	

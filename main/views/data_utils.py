@@ -10,6 +10,7 @@ from main.models import (
 	Vaccine,
 	Growth_result,
 	Hospitalizing,
+	Hospital,
 	Radiometry,
 	Note,
 	Analysis,
@@ -36,11 +37,50 @@ def build_person_data(person):
 	return data
 
 def get_hospital_list():
-	h = Curing_record.query.filter(or_(
-		Curing_record.exit_date <= datetime.now().date(),
-		Curing_record.exit_date == None)
-	).all()
-	return h
+	people_qty = Person.query.count()
+	hospitals = Hospital.query.all()
+	h_list = []
+	all_in_hospitals = 0
+	for h in hospitals:
+		h_data = h.to_json()
+		h_data['qty'] = h = Curing_record.query\
+			.filter(Curing_record.hospital_id == h.id)\
+			.filter(
+				Curing_record.enter_date <= datetime.now().date(),
+				Curing_record.completed == 0)\
+			.count()
+			# .filter(or_(
+			# 	Curing_record.exit_date <= datetime.now().date(),
+			# 	Curing_record.exit_date == None))\
+		all_in_hospitals += h_data['qty']
+		h_list.append(h_data)
+
+	return {
+		"data": [
+			{
+				"name": "Işjeň",
+				"qty": people_qty - all_in_hospitals,
+				"maxval": people_qty,
+				"hex": "rest",
+				"id": "rest",
+				"color_code": "#2BB930",
+			},
+			*h_list,
+		]
+	}
+
+def get_loc_clinic_list():
+	local_list = Curing_record.query\
+		.filter_by(hospital_id = 1)\
+		.filter(
+			Curing_record.enter_date <= datetime.now().date(),
+			or_(Curing_record.completed == 0, Curing_record.completed == None))\
+		.all()
+	return {
+		"data": [
+			item.person.to_json() for item in local_list
+		]
+	}
 
 def get_drugs_list():
 	drugs_data = Drug.query\

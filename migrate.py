@@ -162,35 +162,6 @@ for mcheckup in mcheckups_data:
 	db.session.commit()
 
 
-hospitals_data = [
-	{
-		"name": "Lukmançylyk nokady",
-		"location": "",
-		"address": "Jaňga",
-		"color_code": "#FF9E27",
-		"note": "",
-	},
-	{
-		"name": "Türkmenbaşy Hassahana",
-		"location": "",
-		"address": "Türkmenbaşy",
-		"color_code": "#F25961",
-		"note": "",
-	},
-	{
-		"name": "Aşgabat Hassahana",
-		"location": "",
-		"address": "Aşgabat",
-		"color_code": "#F25961",
-		"note": "",
-	}
-]
-
-for hospital in hospitals_data:
-	current_hospital = Hospital(**hospital)
-	db.session.add(current_hospital)
-	db.session.commit()
-
 
 drugs_data = [
 	{
@@ -291,7 +262,41 @@ for drug in drugs_data:
 	db.session.commit()
 
 
+############
 
+hospitals_data = [
+	{
+		"name": "Lukmançylyk nokady",
+		"location": "",
+		"address": "Jaňga",
+		"color_code": "#FF9E27",
+		"maxval": 15,
+		"note": "",
+	},
+	{
+		"name": "Türkmenbaşy hassahana",
+		"location": "",
+		"address": "Türkmenbaşy",
+		"color_code": "#F25961",
+		"maxval": 40,
+		"note": "",
+	},
+	{
+		"name": "Aşgabat hassahana",
+		"location": "",
+		"address": "Aşgabat",
+		"color_code": "#4485c5",
+		"maxval": 40,
+		"note": "",
+	}
+]
+
+for hospital in hospitals_data:
+	current_hospital = Hospital(**hospital)
+	db.session.add(current_hospital)
+	db.session.commit()
+
+############################
 
 curingrs_data = [
 	{
@@ -306,7 +311,7 @@ curingrs_data = [
 		"person_id": 2,
 		"hospital_id": 1,
 		"enter_date": datetime(2023,3,8),
-		"exit_date": datetime(2023,3,10),
+		"exit_date": datetime(2023,5,10),
 		"reason": "Gyzdyrma",
 	},
 ]

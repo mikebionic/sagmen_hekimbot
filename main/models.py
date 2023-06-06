@@ -522,6 +522,7 @@ class Hospital(db.Model):
 	location = db.Column(db.String)
 	address = db.Column(db.String)
 	color_code = db.Column(db.String)
+	maxval = db.Column(db.String)
 	note = db.Column(db.String)
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
 	Curing_record = db.relationship("Curing_record",backref='hospital',lazy=True)
@@ -535,6 +536,7 @@ class Hospital(db.Model):
 			"location": self.location,
 			"address": self.address,
 			"color_code": self.color_code,
+			"maxval": self.maxval,
 			"note": self.note,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 		}
@@ -555,8 +557,8 @@ class Curing_record(db.Model):
 	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
 	enter_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
 	exit_date = db.Column(db.DateTime)
+	completed = db.Column(db.Integer,nullable=False,default=0)
 	reason = db.Column(db.String)
-
 
 	def to_json(self):
 		return {
@@ -569,6 +571,7 @@ class Curing_record(db.Model):
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 			"enter_date": self.enter_date.strftime("%d.%m.%Y") if self.enter_date else None, 
 			"exit_date": self.exit_date.strftime("%d.%m.%Y") if self.exit_date else None, 
+			"completed": self.completed,
 			"reason": self.reason,
 		}
 

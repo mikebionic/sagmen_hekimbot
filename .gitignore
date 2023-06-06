@@ -24,7 +24,9 @@ yarn-error.log*
 .env
 yarn.lock
 
-**/static/
+**/static/assets/
+**/static/atlantis/
+**/static/medicons/
 
 *.db
 
