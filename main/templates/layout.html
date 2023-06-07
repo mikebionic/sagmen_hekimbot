@@ -68,7 +68,7 @@
 		/>
 		<link
 			rel="stylesheet"
-			href="{{url_for('static', filename='me_style.css')}}"
+			href="{{url_for('static', filename='me_assets/me_style.css')}}"
 		/>
 	
 	</head>
@@ -191,7 +191,19 @@
 
 			<div id="preloader"></div>
 			<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
+			<audio id="myAudio">
+				<source
+					src="{{url_for('static', filename='me_assets/audio/tada.wav')}}"
+					type="audio/mp3"
+				/>
+			</audio>
+			<audio id="blink">
+				<source
+					src="{{url_for('static', filename='me_assets/audio/tada.wav')}}"
+					type="audio/mp3"
+				/>
+			</audio>
+			
 			<!-- Vendor JS Files -->
 			<script src="{{url_for('static', filename='assets/vendor/jquery/jquery.min.js')}}"></script>
 			<script src="{{url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -211,7 +223,8 @@
 			<!-- Atlantis JS -->
 			<script src="{{url_for('static', filename='atlantis/assets/js/atlantis.min.js')}}"></script>
 			<script src="{{url_for('static', filename='atlantis/assets/js/plugin/chart-circle/circles.min.js')}}"></script>
-			<script src="{{url_for('static', filename='medscripts.js')}}"></script>
+			<script src="{{url_for('static', filename='me_assets/medscripts.js')}}"></script>
+			<script src="{{url_for('static', filename='me_assets/me_audio.js')}}"></script>
 
 			{% block scripts %}{% endblock %}
 		</div>

@@ -12,7 +12,7 @@ from main.views.req_utils import (
 from main.views.data_utils import (
 	build_person_data,
 	get_hospital_list,
-	get_loc_clinic_list
+	get_hospital_records_list
 )
 from main.models import Person
 from main import db
@@ -97,5 +97,5 @@ def get_curing_records():
 
 @bp.get("/in_local_clinic/")
 def get_in_local_clinic():
-	return get_loc_clinic_list()
+	return get_hospital_records_list()
 	

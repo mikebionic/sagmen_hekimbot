@@ -1,0 +1,178 @@
+{% extends 'layout.html' %} {% block content %}
+<section>
+	<div class="row">
+		<div class="col">
+			<div class="card">
+				<div class="card-header">
+					<div class="d-flex align-items-center">
+						<div class="card-title">{{hospital_data.name}}</div>
+						<button
+							class="btn btn-primary btn-round ml-auto newDataModalBtn"
+							data-toggle="modal"
+							data-target="#addDrugsRowModal"
+						>
+							<i class="icofont-plus"></i>
+							Hassa goş
+						</button>
+					</div>
+				</div>
+
+				<div class="card-body">
+					<div
+						class="modal fade"
+						id="addDrugsRowModal"
+						tabindex="-1"
+						role="dialog"
+						aria-hidden="true"
+					>
+						<div class="modal-dialog" style="max-width: 1000px" role="document">
+							<div class="modal-content">
+								<div class="modal-header no-bd">
+									<h5 class="modal-title">
+										<span class="fw-mediumbold"> Täze</span>
+										<span class="fw-light"> Setir</span>
+									</h5>
+									<button
+										type="button"
+										class="close"
+										data-dismiss="modal"
+										aria-label="Close"
+									>
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<form>
+									<div class="modal-body">
+										<p class="small">Täze gözegçilik maglumaty goş</p>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group form-group-default">
+													<label>Ady</label>
+
+													<input
+														id="manage_drug_name"
+														type="text"
+														class="form-control"
+														placeholder="Ady"
+														required
+													/>
+													<input
+														id="manage_drug_hex"
+														type="hidden"
+														/>
+
+													<div class="validate"></div>
+												</div>
+											</div>
+											<div class="col-md-6 pr-0">
+												<div class="form-group form-group-default">
+													<label>Bellik</label>
+													<input
+														id="manage_drug_note"
+														type="text"
+														class="form-control"
+														placeholder="Bellik"
+													/>
+												</div>
+											</div>
+											<div class="col-md-6 d-flex">
+												<div class="form-group form-group-default">
+													<label>San</label>
+													<input
+														id="manage_drug_qty"
+														type="text"
+														class="form-control"
+														placeholder="San"
+														required
+													/>
+												</div>
+												<div class="form-group form-group-default">
+													<label>Ölçeg birligi</label>
+													<input
+														id="manage_drug_unit"
+														type="text"
+														class="form-control"
+														placeholder="Ölçeg birligi"
+														required
+													/>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer no-bd">
+										<button
+											type="button"
+											id="addDrugsRowButton"
+											class="btn btn-primary"
+										>
+											Goş
+										</button>
+										<button
+											type="button"
+											class="btn btn-danger"
+											data-dismiss="modal"
+										>
+											Ýap
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
+					{% if data %}
+					<div class="table-responsive">
+						<table id="add-row" class="display table table-striped table-hover">
+							<thead>
+								<tr>
+									<th class="text-center">Ady</th>
+									<th class="text-center">Ölçeg birlik</th>
+									<th class="text-center">San</th>
+									<th class="text-center">Bellik</th>
+									<th class="text-center" style="width: 5%">Amal</th>
+								</tr>
+							</thead>
+							<tbody class="table_data drug_table_rows">
+								{% for item in data %}
+								<tr class="item_row" owner_id="drug_{{item.hex}}">
+									<td class="text-center name">{{item.name}}</td>
+									<input type="hidden" class="hex" value="{{item.hex}}" />
+									<td class="text-center unit">{{item.name}}</td>
+									<td class="text-center qty">{{item.name}}</td>
+									<td class="text-center note">{{item.note}}</td>
+									<td class="text-center">
+										<div class="form-button-action">
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-primary btn-lg edit_btn"
+												owner_id="drug_{{item.hex}}"
+											>
+												<i class="icofont-edit"></i>
+											</button>
+											<button
+												type="button"
+												data-toggle="tooltip"
+												title=""
+												class="btn btn-link btn-danger remove_btn"
+												owner_id="drug_{{item.hex}}"
+											>
+												<i class="icofont-bin"></i>
+											</button>
+										</div>
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='drug_table.js') }}"></script>
+{% endblock %}

@@ -43,7 +43,7 @@ def get_hospital_list():
 	all_in_hospitals = 0
 	for h in hospitals:
 		h_data = h.to_json()
-		h_data['qty'] = h = Curing_record.query\
+		h_data['qty'] = Curing_record.query\
 			.filter(Curing_record.hospital_id == h.id)\
 			.filter(
 				Curing_record.enter_date <= datetime.now().date(),
@@ -69,9 +69,9 @@ def get_hospital_list():
 		]
 	}
 
-def get_loc_clinic_list():
+def get_hospital_records_list(hospital_id = 1):
 	local_list = Curing_record.query\
-		.filter_by(hospital_id = 1)\
+		.filter_by(hospital_id = hospital_id)\
 		.filter(
 			Curing_record.enter_date <= datetime.now().date(),
 			or_(Curing_record.completed == 0, Curing_record.completed == None))\
@@ -89,3 +89,6 @@ def get_drugs_list():
 		.all()
 	
 	return [data.to_json() for data in drugs_data]
+
+def get_hospital_info(id):
+	return Hospital.query.get(id).to_json()

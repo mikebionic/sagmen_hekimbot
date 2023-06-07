@@ -140,6 +140,9 @@
 <a href="{{ url_for('views.manage_person') }}" class="floating-add-cross"><i class="bx bx-edit"></i></a>
 <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 {% endblock %} {% block scripts %}
+<script>
+	var hospital_rec_url = "{{url_for('views.get_hospital_records')}}"
+</script>
 
-<script src="{{url_for('static', filename='hassa_hasabat.js')}}"></script>
+<script src="{{url_for('static', filename='me_assets/hassa_hasabat.js')}}"></script>
 {% endblock %}

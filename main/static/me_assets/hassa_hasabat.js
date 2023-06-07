@@ -51,10 +51,12 @@ setInterval(() => {
 
 const create_circle_layer = (item) => {
     return `
-    <div class="px-2 pb-2 pb-md-0 text-center">
-        <div id="circles-${item.id}${item.hex}"></div>
-        <h6 class="fw-bold mt-3 mb-0">${item.name}</h6>
-    </div>
+    <a href="${hospital_rec_url}?id=${item.id}">
+        <div class="px-2 pb-2 pb-md-0 text-center">
+            <div id="circles-${item.id}${item.hex}"></div>
+            <h6 class="fw-bold mt-3 mb-0">${item.name}</h6>
+        </div>
+    </a>
     `
 }
 
