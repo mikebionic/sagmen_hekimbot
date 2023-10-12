@@ -20,6 +20,9 @@ class User(db.Model, UserMixin):
 	surname = db.Column(db.String)
 	patronomic = db.Column(db.String)
 	position = db.Column(db.String)
+	work_place = db.Column(db.String)
+	work_time = db.Column(db.String)
+	phone_number = db.Column(db.String)
 	password = db.Column(db.String(80))
 	avatar = db.Column(db.String)
 
@@ -33,7 +36,11 @@ class User(db.Model, UserMixin):
 			"surname": self.surname,
 			"patronomic": self.patronomic,
 			"position": self.position,
+			"work_place": self.work_place,
+			"work_time": self.work_time,
+			"phone_number": self.phone_number,
 			"password": self.password,
+			"avatar": self.avatar,
 		}
 
 	def update(self, **kwargs):
@@ -660,6 +667,49 @@ class Drug_inv_line(db.Model):
 			"deleted": self.deleted,
 			"note": self.note,
 			"name": self.name,
+			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+			"updated_date": self.updated_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
+		}
+
+	def update(self, **kwargs):
+		for key, value in kwargs.items():
+			if value is not None:
+				if hasattr(self, key):
+					setattr(self, key, value)
+	
+
+
+class Registry(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	hex = db.Column(db.String,nullable=False,default=datetime.now().timestamp())
+	deleted = db.Column(db.Integer,nullable=False,default=0)
+	note = db.Column(db.String)
+	doctor_id = db.Column(db.Integer)
+	user_fullname = db.Column(db.String)
+	title = db.Column(db.Integer)
+	description = db.Column(db.String)
+	date_str = db.Column(db.String)
+	time_str = db.Column(db.String)
+	status = db.Column(db.String)
+	registry_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
+	created_date = db.Column(db.DateTime,nullable=False,default=datetime.now())
+	updated_date = db.Column(db.DateTime,nullable=False,default=datetime.now(),onupdate=datetime.now())
+
+	def to_json(self):
+		return {
+			"id": self.id,
+			"hex": self.hex,
+			"deleted": self.deleted,
+			"note": self.note,
+			"doctor_id": self.doctor_id,			
+			"user_fullname": self.user_fullname,
+			"title": self.title,
+			"description": self.description,
+			"date_str": self.date_str,
+			"time_str": self.time_str,
+			"status": self.status,
+			"color": "red" if self.status == "declined" else "green" if self.status == "accepted" else "grey",
+			"registry_date": self.registry_date.strftime("%d.%m.%Y") if self.registry_date else None,
 			"created_date": self.created_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 			"updated_date": self.updated_date.strftime("%d.%m.%Y %H:%M:S") if self.created_date else None,
 		}

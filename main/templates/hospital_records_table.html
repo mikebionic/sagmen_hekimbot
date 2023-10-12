@@ -9,7 +9,7 @@
 						<button
 							class="btn btn-primary btn-round ml-auto newDataModalBtn"
 							data-toggle="modal"
-							data-target="#addDrugsRowModal"
+							data-target="#addHospital_recordRowModal"
 						>
 							<i class="icofont-plus"></i>
 							Hassa goş
@@ -20,7 +20,7 @@
 				<div class="card-body">
 					<div
 						class="modal fade"
-						id="addDrugsRowModal"
+						id="addHospital_recordRowModal"
 						tabindex="-1"
 						role="dialog"
 						aria-hidden="true"
@@ -50,14 +50,14 @@
 													<label>Ady</label>
 
 													<input
-														id="manage_drug_name"
+														id="manage_hospital_record_name"
 														type="text"
 														class="form-control"
 														placeholder="Ady"
 														required
 													/>
 													<input
-														id="manage_drug_hex"
+														id="manage_hospital_record_hex"
 														type="hidden"
 														/>
 
@@ -68,7 +68,7 @@
 												<div class="form-group form-group-default">
 													<label>Bellik</label>
 													<input
-														id="manage_drug_note"
+														id="manage_hospital_record_note"
 														type="text"
 														class="form-control"
 														placeholder="Bellik"
@@ -79,7 +79,7 @@
 												<div class="form-group form-group-default">
 													<label>San</label>
 													<input
-														id="manage_drug_qty"
+														id="manage_hospital_record_qty"
 														type="text"
 														class="form-control"
 														placeholder="San"
@@ -89,12 +89,26 @@
 												<div class="form-group form-group-default">
 													<label>Ölçeg birligi</label>
 													<input
-														id="manage_drug_unit"
+														id="manage_hospital_record_unit"
 														type="text"
 														class="form-control"
 														placeholder="Ölçeg birligi"
 														required
 													/>
+												</div>
+												<div class="form-group">
+													<label>Doglan senesi</label>
+													<input
+														type="datetime"
+														name="birth_date"
+														class="form-control form-control-sm datepicker"
+														id="person_birth_date"
+														placeholder="Doglan senesi"
+														data-rule="minlen:4"
+														data-msg="Please enter at least 4 chars"
+														value="{{ data.birth_date if data else '' }}"
+													/>
+													<div class="validate"></div>
 												</div>
 											</div>
 										</div>
@@ -102,7 +116,7 @@
 									<div class="modal-footer no-bd">
 										<button
 											type="button"
-											id="addDrugsRowButton"
+											id="addHospital_recordRowButton"
 											class="btn btn-primary"
 										>
 											Goş
@@ -126,20 +140,32 @@
 							<thead>
 								<tr>
 									<th class="text-center">Ady</th>
-									<th class="text-center">Ölçeg birlik</th>
-									<th class="text-center">San</th>
+									<th class="text-center">Cini</th>
+									<th class="text-center">Giren sene</th>
+									<th class="text-center">Çykan sene</th>
+									<th class="text-center">Çykdy</th>
+									<th class="text-center">Sebäp</th>
 									<th class="text-center">Bellik</th>
 									<th class="text-center" style="width: 5%">Amal</th>
 								</tr>
 							</thead>
-							<tbody class="table_data drug_table_rows">
+							<tbody class="table_data hospital_record_table_rows">
 								{% for item in data %}
-								<tr class="item_row" owner_id="drug_{{item.hex}}">
-									<td class="text-center name">{{item.name}}</td>
+								<tr class="item_row" owner_id="hospital_record_{{item.hex}}">
+									<td class="text-center name">Plan</td>
 									<input type="hidden" class="hex" value="{{item.hex}}" />
-									<td class="text-center unit">{{item.name}}</td>
-									<td class="text-center qty">{{item.name}}</td>
-									<td class="text-center note">{{item.note}}</td>
+									<input type="hidden" class="hospital_id" value="{{item.hospital_id}}" />
+									<td class="text-center m_level">matros</td>
+									<td class="text-center enter_date">
+										13.03.2023
+									</td>
+									<td class="text-center exit_date">
+										13.03.2023
+									</td>
+
+									<td class="text-center completed">checkbox</td>
+									<td class="text-center reason">reason</td>
+									<td class="text-center completed">checkbox</td>
 									<td class="text-center">
 										<div class="form-button-action">
 											<button
@@ -147,7 +173,7 @@
 												data-toggle="tooltip"
 												title=""
 												class="btn btn-link btn-primary btn-lg edit_btn"
-												owner_id="drug_{{item.hex}}"
+												owner_id="hospital_record_{{item.hex}}"
 											>
 												<i class="icofont-edit"></i>
 											</button>
@@ -156,7 +182,7 @@
 												data-toggle="tooltip"
 												title=""
 												class="btn btn-link btn-danger remove_btn"
-												owner_id="drug_{{item.hex}}"
+												owner_id="hospital_record_{{item.hex}}"
 											>
 												<i class="icofont-bin"></i>
 											</button>
@@ -174,5 +200,5 @@
 	</div>
 </section>
 {% endblock %} {% block scripts %}
-<script src="{{ url_for('static', filename='drug_table.js') }}"></script>
+<script src="{{ url_for('static', filename='me_assets/hospital_records_table.js') }}"></script>
 {% endblock %}

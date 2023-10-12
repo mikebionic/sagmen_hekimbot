@@ -1,0 +1,138 @@
+{% extends 'layout.html' %} {% block content %}
+<section>
+	<h1 style="text-align: center; padding: 2rem">Barlaga kabul ediş</h1>
+	<div class="row">
+		<div class="col-4">
+			<div class="card  me_hoverselectable" onclick="{$('.me_dentists_zone').show('slow')}">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center" style="flex-direction:column">
+						<img src="{{url_for('static', filename='medicons/tooth.svg')}}"  style="height:4rem;"></i>
+						<h4>Diş lukmany</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-4">
+			<div class="card  me_hoverselectable">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center" style="flex-direction:column">
+						<img src="{{url_for('static', filename='medicons/ear.svg')}}"  style="height:4rem;"></i>
+						<h4>LOR</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-4">
+			<div class="card  me_hoverselectable">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center" style="flex-direction:column">
+						<img src="{{url_for('static', filename='medicons/eye_.svg')}}"  style="height:4rem;"></i>
+						<h4>Göz lukmany</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-4">
+			<div class="card  me_hoverselectable">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center" style="flex-direction:column">
+						<img src="{{url_for('static', filename='medicons/bone.svg')}}"  style="height:4rem;"></i>
+						<h4>Hirurg</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-4">
+			<div class="card  me_hoverselectable">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center" style="flex-direction:column">
+						<img src="{{url_for('static', filename='medicons/pulse.svg')}}"  style="height:4rem;"></i>
+						<h4>Kardiolog</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-4">
+			<div class="card  me_hoverselectable">
+				<div class="card-body">
+					<div class="d-flex align-items-center justify-content-center" style="flex-direction:column">
+						<img src="{{url_for('static', filename='medicons/doctor.svg')}}"  style="height:4rem;"></i>
+						<h4>Newropatolog</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<hr>
+	<div class="me_dentists_zone" style="display:none">
+		<h3 class="text-center">Diş lukmanlar</h3>
+		<div class="row">
+		{% for dentist in dentists %}
+			<div class="col-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="row align-items-center justify-content-center">
+							<div class="col-6">
+								<b>{{dentist.name}} {{dentist.surname}}</b>
+								<br>{{dentist.work_time}}	
+							</div>
+							<div class="col-4">
+								<i class="icofont-phone"></i> {{dentist.phone_number}}	
+								<br> <i class="icofont-google-map"></i>{{dentist.work_place}}	
+							</div>
+							<div class="col-2">
+								<img src="{{url_for('static', filename='medicons/plus.svg')}}"
+									style="height:2rem; border-radius: 5rem; box-shadow: 0px 0px 15px #6596c4a6;"
+									onclick="{$('.me_addregistry').show('slow')}" />
+							</div>
+						</div>
+	
+						<hr>
+						<div class="col">
+							<div class="row me_addregistry" 
+									style="justify-content: space-between; align-items: center; margin:.5rem;box-shadow: 0px 0px 15px #a3c7e96e; display:none">
+								<div class="col-8">
+									<input style="border-color: azure;" name="user_fullname" placeholder="user_fullname" class="form-control-sm"></input>
+									<input style="border-color: azure;" name="title" placeholder="title" class="form-control-sm"></input>
+									<input style="border-color: azure;" name="description" placeholder="description" class="form-control-sm"></input>
+								</div>
+								<div class="col-4" style="font-size: smaller;">
+									<input style="border-color: azure;" name="registry_date" placeholder="25.10.2023" class="form-control-sm"></input>
+									<input style="border-color: azure;" name="time_str" placeholder="12:00" class="form-control-sm"></input>
+									<!-- <input style="border-color: azure;" name="status" placeholder="status" class="form-control-sm"></input> -->
+								</div>
+							</div>
+							
+							{% if registry_data %}
+							{% for registry in registry_data %}
+							{% if registry.doctor_id == dentist.id %}
+							<div class="row" style="justify-content: space-between; align-items: center; margin:.5rem;box-shadow: 0px 0px 15px #a3c7e96e;">
+								<div class="col-8">
+									<b>{{registry.user_fullname}}</b>
+									<p>{{registry.title}}</p>
+								</div>
+								<div class="col-4" style="font-size: smaller;">
+									<b>{{registry.registry_date}} {{registry.time_str}}</b>
+									<p style="color:{{registry.color}}">{{registry.status}}</p>
+								</div>
+							</div>
+							{% endif %}
+							{% endfor %}
+							{% endif %}
+	
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock %} {% block scripts %}
+{% endblock %}

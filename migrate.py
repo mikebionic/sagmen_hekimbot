@@ -6,7 +6,15 @@ from random import randint
 
 from main import db, create_app
 from main.config import Config
-from main.models import Curing_record, Drug, Hospital, User, Physical, Medical_checkup, Person
+from main.models import (Curing_record,
+	Drug,
+	Hospital,
+	User,
+	Physical,
+	Medical_checkup,
+	Person,
+	Registry
+)
 
 
 
@@ -96,6 +104,13 @@ try:
 		curingr["exit_date"] = datetime.strptime(curingr["exit_date"], "%d.%m.%Y") if len(curingr["exit_date"]) > 5 else None
 		current_curingr = Curing_record(**curingr)
 		db.session.add(current_curingr)
+		db.session.commit()
+
+
+	for registry in migration_data["registry_data"]:
+		registry["registry_date"] = datetime.strptime(registry["registry_date"], "%d.%m.%Y") if len(registry["registry_date"]) > 5 else None
+		registry = Registry(**registry)
+		db.session.add(registry)
 		db.session.commit()
 
 

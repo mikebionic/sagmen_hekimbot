@@ -27,4 +27,7 @@ def create_app(config_class=Config):
 	from main.views import bp as views_bp
 	app.register_blueprint(views_bp)
 
+	from main.registry import bp as registry_bp
+	app.register_blueprint(registry_bp)
+
 	return app

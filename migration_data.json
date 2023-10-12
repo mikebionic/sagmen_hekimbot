@@ -1,28 +1,43 @@
 {
-    "db_host":"localhost",
-    "db_user":"root",
-    "db_password":"",
-    
-    "users_data": [
+	"db_host": "localhost",
+	"db_user": "root",
+	"db_password": "",
+	"users_data": [
 		{
-			"username": "plan",
+			"username": "guwanch",
 			"password": "123",
-			"name": "Plan",
-			"surname": "Planyyew",
-			"patronomic": "Planyyewic",
-			"position": "medic"
+			"name": "Jepbar",
+			"surname": "Guwanjow",
+			"patronomic": "Muhammedowich",
+			"position": "therapist",
+			"work_place": "Turkmenbashy hassahana",
+			"work_time": "Jübüt günler 8:00-17:00",
+			"phone_number": "+99364123456"
 		},
 		{
 			"username": "jemal",
 			"password": "123",
 			"name": "Jemal",
-			"surname": "Planyyewa",
-			"patronomic": "Planyyewna",
-			"position": "medic"
+			"surname": "Saryyewa",
+			"patronomic": "Malikowna",
+			"position": "dentist",
+			"work_place": "Turkmenbashy hassahana",
+			"work_time": "Täk günler 10:00-20:00",
+			"phone_number": "+993651543421"
+		},
+		{
+			"username": "akmyrat",
+			"password": "123",
+			"name": "Akmyrat",
+			"surname": "Hangeldiyew",
+			"patronomic": "Akmyradowich",
+			"position": "dentist",
+			"work_place": "Saglyk oyi 89",
+			"work_time": "Jübüt günler 18:00-4:00",
+			"phone_number": "+99362333421"
 		}
 	],
-
-    "hospitals_data": [
+	"hospitals_data": [
 		{
 			"name": "Lukmançylyk nokady",
 			"location": "",
@@ -48,27 +63,25 @@
 			"note": ""
 		}
 	],
-
 	"curingrs_data": [
 		{
 			"note": "",
 			"person_id": 1,
 			"hospital_id": 3,
-			"enter_date": "11.3.2023",
-            "exit_date": "",
+			"enter_date": "11.10.2023",
+			"exit_date": "",
 			"reason": "Dyrnak kesdirildi"
 		},
 		{
 			"note": "",
 			"person_id": 2,
 			"hospital_id": 1,
-			"enter_date": "8.3.2023",
-			"exit_date": "10.5.2023",
+			"enter_date": "8.10.2023",
+			"exit_date": "10.12.2023",
 			"reason": "Gyzdyrma"
 		}
 	],
-
-    "persons_data": [
+	"persons_data": [
 		{
 			"note": "",
 			"date": "23.11.2020",
@@ -116,8 +129,7 @@
 			"sport_level": ""
 		}
 	],
-
-    "physicals_data": [
+	"physicals_data": [
 		{
 			"note": "",
 			"person_id": null,
@@ -132,8 +144,7 @@
 			"dinamometry_left": ""
 		}
 	],
-
-    "mcheckups_data": [
+	"mcheckups_data": [
 		{
 			"note": "",
 			"person_id": null,
@@ -157,8 +168,7 @@
 			"reviewed_medic": ""
 		}
 	],
-
-    "drugs_data": [
+	"drugs_data": [
 		{
 			"note": "",
 			"name": "Sol.Natriý hlorid 0.9% 250.0",
@@ -207,7 +217,6 @@
 			"qty": 100,
 			"unit": "san"
 		},
-
 		{
 			"note": "",
 			"name": "Trimol",
@@ -235,6 +244,96 @@
 			"description": "Gyzgynlyga garşy",
 			"qty": 90,
 			"unit": "ampula"
+		}
+	],
+	"registry_data": [
+		{
+			"note": "",
+			"status": "accepted",
+			"doctor_id": 3,
+			"user_fullname": "Halmyrat Ibragimow",
+			"title": "Plomba goymaly!",
+			"description": "Dishimde plomba bardy, yone bir yyl gecenden son gacdy, gyssag aralykda tazesini goydurjakdym",
+			"date_str": "27.10.2023",
+			"time_str": "11:00",
+			"registry_date": "27.10.2023"
+		},
+		{
+			"note": "",
+			"status": "accepted",
+			"doctor_id": 3,
+			"user_fullname": "Andrey Teremkow",
+			"title": "Лечение коренных зубов",
+			"description": "",
+			"date_str": "27.10.2023",
+			"time_str": "14:00",
+			"registry_date": "27.10.2023"
+		},
+		{
+			"note": "",
+			"status": "accepted",
+			"doctor_id": 3,
+			"user_fullname": "Ejeş Akmyradowa",
+			"title": "Breketleri täzelemeli.",
+			"description": "",
+			"date_str": "27.10.2023",
+			"time_str": "15:30",
+			"registry_date": "27.10.2023"
+		},
+		{
+			"note": "",
+			"status": "waiting",
+			"doctor_id": 3,
+			"user_fullname": "Dünýä Baharowa",
+			"title": "Öňdäki dişleri leçeniýa",
+			"description": "",
+			"date_str": "27.10.2023",
+			"time_str": "18:00",
+			"registry_date": "27.10.2023"
+		},
+		{
+			"note": "",
+			"status": "declined",
+			"doctor_id": 4,
+			"user_fullname": "Ayperi",
+			"title": "Barlaga yazyljak",
+			"description": "",
+			"date_str": "27.10.2023",
+			"time_str": "17:00",
+			"registry_date": "27.10.2023"
+		},
+		{
+			"note": "",
+			"status": "accepted",
+			"doctor_id": 4,
+			"user_fullname": "Toýly Agaýew",
+			"title": "Plomba goymaly!",
+			"description": "",
+			"date_str": "27.10.2023",
+			"time_str": "20:00",
+			"registry_date": "27.10.2023"
+		},
+		{
+			"note": "",
+			"status": "waiting",
+			"doctor_id": 4,
+			"user_fullname": "Gurban Ýaýlymow",
+			"title": "Diş sogurmaly",
+			"description": "",
+			"date_str": "27.10.2023",
+			"time_str": "21:30",
+			"registry_date": "27.10.2023"
+		},
+		{
+			"note": "",
+			"status": "waiting",
+			"doctor_id": 4,
+			"user_fullname": "Sapar Rejepow",
+			"title": "Barlaga yazyljak",
+			"description": "",
+			"date_str": "27.10.2023",
+			"time_str": "22:30",
+			"registry_date": "27.10.2023"
 		}
 	]
 }
