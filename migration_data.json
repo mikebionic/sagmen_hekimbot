@@ -12,6 +12,7 @@
 			"position": "therapist",
 			"work_place": "Turkmenbashy hassahana",
 			"work_time": "Jübüt günler 8:00-17:00",
+			"work_map_img": "me_assets/map_chehov.png",
 			"phone_number": "+99364123456"
 		},
 		{
@@ -21,8 +22,9 @@
 			"surname": "Saryyewa",
 			"patronomic": "Malikowna",
 			"position": "dentist",
-			"work_place": "Turkmenbashy hassahana",
+			"work_place": "Stomat. merkezi",
 			"work_time": "Täk günler 10:00-20:00",
+			"work_map_img": "me_assets/map_chehov.png",
 			"phone_number": "+993651543421"
 		},
 		{
@@ -32,8 +34,9 @@
 			"surname": "Hangeldiyew",
 			"patronomic": "Akmyradowich",
 			"position": "dentist",
-			"work_place": "Saglyk oyi 89",
+			"work_place": "Saglyk oyi №10",
 			"work_time": "Jübüt günler 18:00-4:00",
+			"work_map_img": "me_assets/map_moskov.png",
 			"phone_number": "+99362333421"
 		}
 	],

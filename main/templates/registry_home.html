@@ -77,55 +77,77 @@
 			<div class="col-6">
 				<div class="card">
 					<div class="card-body">
-						<div class="row align-items-center justify-content-center">
-							<div class="col-6">
-								<b>{{dentist.name}} {{dentist.surname}}</b>
-								<br>{{dentist.work_time}}	
+						<div class="col">
+							<div class="col d-flex justify-content-center me_map_img">
+								<img src="{{url_for('static', filename=dentist.work_map_img)}}" alt="">
 							</div>
-							<div class="col-4">
-								<i class="icofont-phone"></i> {{dentist.phone_number}}	
-								<br> <i class="icofont-google-map"></i>{{dentist.work_place}}	
-							</div>
-							<div class="col-2">
-								<img src="{{url_for('static', filename='medicons/plus.svg')}}"
-									style="height:2rem; border-radius: 5rem; box-shadow: 0px 0px 15px #6596c4a6;"
-									onclick="{$('.me_addregistry').show('slow')}" />
+							<div class="row align-items-center justify-content-center">
+								<div class="col-6">
+									<b>{{dentist.name}} {{dentist.surname}}</b>
+									<br>{{dentist.work_time}}	
+								</div>
+								<div class="col-4">
+									<i class="icofont-phone"></i> {{dentist.phone_number}}	
+									<br> <i class="icofont-google-map"></i>{{dentist.work_place}}	
+								</div>
+								<div class="col-2">
+									<img class="new_registry_btn" owner_id="{{dentist.id}}"
+										src="{{url_for('static', filename='medicons/plus.svg')}}"
+										 />
+								</div>
 							</div>
 						</div>
 	
 						<hr>
 						<div class="col">
-							<div class="row me_addregistry" 
+							<div class="row me_addregistry" owner_id="{{dentist.id}}"
 									style="justify-content: space-between; align-items: center; margin:.5rem;box-shadow: 0px 0px 15px #a3c7e96e; display:none">
-								<div class="col-8">
-									<input style="border-color: azure;" name="user_fullname" placeholder="user_fullname" class="form-control-sm"></input>
-									<input style="border-color: azure;" name="title" placeholder="title" class="form-control-sm"></input>
-									<input style="border-color: azure;" name="description" placeholder="description" class="form-control-sm"></input>
+								<div class="col-10">
+									<div class="form-group">
+										<input owner_id={{dentist.id}} name="user_fullname" placeholder="Ady Familiyasy" class="form-control-sm"></input>
+										<input owner_id={{dentist.id}} name="title" placeholder="Näsaglyk barada" class="form-control-sm"></input>
+										<input owner_id={{dentist.id}} name="description" placeholder="Giňişleýin" class="form-control-sm"></input>
+										
+										<label>Sene</label>
+										<input
+											type="datetime"
+											owner_id={{dentist.id}} name="registry_date"
+											class="form-control form-control-sm datepicker"
+											placeholder="28.10.2023"
+											data-rule="minlen:4"
+											data-msg="Please enter at least 4 chars"
+										/>
+										<div class="validate"></div>
+										
+										<input owner_id={{dentist.id}} name="time_str" placeholder="12:00" class="form-control-sm"></input>
+									</div>
 								</div>
-								<div class="col-4" style="font-size: smaller;">
-									<input style="border-color: azure;" name="registry_date" placeholder="25.10.2023" class="form-control-sm"></input>
-									<input style="border-color: azure;" name="time_str" placeholder="12:00" class="form-control-sm"></input>
-									<!-- <input style="border-color: azure;" name="status" placeholder="status" class="form-control-sm"></input> -->
+								<div class="col-2">
+									<img class="save_registry_btn" owner_id="{{dentist.id}}"
+										src="{{url_for('static', filename='medicons/check.svg')}}" />
 								</div>
 							</div>
 							
-							{% if registry_data %}
-							{% for registry in registry_data %}
-							{% if registry.doctor_id == dentist.id %}
-							<div class="row" style="justify-content: space-between; align-items: center; margin:.5rem;box-shadow: 0px 0px 15px #a3c7e96e;">
-								<div class="col-8">
-									<b>{{registry.user_fullname}}</b>
-									<p>{{registry.title}}</p>
+							<div class="registry_records" owner_id="{{dentist.doctor_id}}">
+								{% if registry_data %}
+								{% for registry in registry_data %}
+								{% if registry.doctor_id == dentist.id %}
+								<div class="row" style="justify-content: space-between; align-items: center; margin:.5rem;box-shadow: 0px 0px 15px #a3c7e96e;">
+									<div class="col-8">
+										<p owner_id="{{registry.doctor_id}}" class="reg_hex" style="display:none">{{registry.hex}}</p>
+										<b owner_id="{{registry.doctor_id}}" class="reg_user_fullname">{{registry.user_fullname}}</b>
+										<p owner_id="{{registry.doctor_id}}" class="reg_title">{{registry.title}}</p>
+									</div>
+									<div class="col-4" style="font-size: smaller;">
+										<b owner_id="{{registry.doctor_id}}" class="reg_registry_date">{{registry.registry_date}} {{registry.time_str}}</b>
+										<p owner_id="{{registry.doctor_id}}" class="reg_status" style="color:{{registry.color}}">{{registry.status}}</p>
+									</div>
 								</div>
-								<div class="col-4" style="font-size: smaller;">
-									<b>{{registry.registry_date}} {{registry.time_str}}</b>
-									<p style="color:{{registry.color}}">{{registry.status}}</p>
-								</div>
+								{% endif %}
+								{% endfor %}
+								{% endif %}
 							</div>
-							{% endif %}
-							{% endfor %}
-							{% endif %}
-	
+		
 						</div>
 					</div>
 				</div>
@@ -135,4 +157,5 @@
 	</div>
 </section>
 {% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='me_assets/me_registry.js') }}"></script>
 {% endblock %}

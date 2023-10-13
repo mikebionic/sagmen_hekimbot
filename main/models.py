@@ -22,6 +22,7 @@ class User(db.Model, UserMixin):
 	position = db.Column(db.String)
 	work_place = db.Column(db.String)
 	work_time = db.Column(db.String)
+	work_map_img = db.Column(db.String)
 	phone_number = db.Column(db.String)
 	password = db.Column(db.String(80))
 	avatar = db.Column(db.String)
@@ -38,6 +39,7 @@ class User(db.Model, UserMixin):
 			"position": self.position,
 			"work_place": self.work_place,
 			"work_time": self.work_time,
+			"work_map_img": self.work_map_img,
 			"phone_number": self.phone_number,
 			"password": self.password,
 			"avatar": self.avatar,

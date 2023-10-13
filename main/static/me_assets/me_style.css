@@ -4,3 +4,51 @@
 	transition: 0.6s;
 	border: 0.5px solid rgba(84, 121, 192, 0.582);
 }
+
+.new_registry_btn,
+.save_registry_btn {
+	height: 2rem;
+	border-radius: 5rem;
+	box-shadow: 0px 0px 25px #4e8bc5c7;
+	transition: 0.3s;
+}
+
+.new_registry_btn:hover,
+.save_registry_btn:hover {
+	height: 2rem;
+	border-radius: 5rem;
+	box-shadow: 0px 0px 5px #4e8bc5c7;
+	transition: 0.3s;
+}
+
+.me_map_img img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	margin: 0.3rem;
+	border-radius: 0.5rem;
+	transition: 0.5s;
+}
+
+.me_map_img {
+	max-height: 18rem;
+	/* width: 25rem; */
+	min-width: 12rem;
+	overflow: auto;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin: 0.5rem;
+}
+
+.me_map_img img:hover {
+	height: 180%;
+	width: 180%;
+	transition: 0.5s;
+}
+
+.me_addregistry input {
+	border-color: azure;
+	width: 90%;
+	margin-top: 0.3rem;
+	margin-bottom: 0.3rem;
+}
