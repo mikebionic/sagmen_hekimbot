@@ -1,0 +1,65 @@
+{% extends 'layout.html' %} {% block content %}
+<section>
+	<input type="hidden" id="doctor_id" value="{{dentist.id}}">
+	<h1 style="text-align: center; padding: 2rem">Barlaga kabul ediş</h1>
+	<div class="row">
+		<div class="card col-md-4 col-sm-12">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-12">
+						<div class="d-flex align-items-center justify-content-center" style="flex-direction:column">
+							<img src="{{url_for('static', filename='medicons/tooth.svg')}}"  style="height:4rem;"></i>
+							<h4>Diş lukmany</h4>
+						</div>
+						<div class="row align-items-center justify-content-center">
+							<div class="col-md-12 col-sm-6 col-xl-6">
+								<b>{{dentist.name}} {{dentist.surname}}</b>
+								<br>{{dentist.work_time}}	
+							</div>
+							<div class="col-md-12 col-sm-4 col-xl-4">
+								<i class="icofont-phone"></i> {{dentist.phone_number}}	
+								<br> <i class="icofont-google-map"></i>{{dentist.work_place}}	
+							</div>
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+
+		<div class="col-md-8 col-sm-12">
+			<div class="registry_records" owner_id="{{dentist.doctor_id}}">
+				{% if registry_data %}
+				{% for registry in registry_data %}
+				{% if registry.doctor_id == dentist.id %}
+				<div class="row" style="justify-content: space-between; align-items: center; margin:.5rem;box-shadow: 0px 0px 15px #a3c7e96e;">
+					<div class="col-6">
+						<p owner_id="{{registry.doctor_id}}" class="reg_hex" style="display:none">{{registry.hex}}</p>
+						<b owner_id="{{registry.doctor_id}}" class="reg_user_fullname">{{registry.user_fullname}}</b>
+						<p owner_id="{{registry.doctor_id}}" class="reg_title">{{registry.title}}</p>
+					</div>
+					<div class="col-3" style="font-size: smaller;">
+						<b owner_id="{{registry.doctor_id}}" class="reg_registry_date">{{registry.registry_date}} {{registry.time_str}}</b>
+						<p owner_id="{{registry.doctor_id}}" class="reg_status" style="color:{{registry.color}}">{{registry.status}}</p>
+					</div>
+					<div class="col-3 me_registry_action">
+						<img src="{{url_for('static', filename='medicons/check.svg')}}" alt=""
+							class="me_registry_accept" hex="{{registry.hex}}">
+						<img src="{{url_for('static', filename='medicons/decline.svg')}}" alt=""
+							class="me_registry_cancel" hex="{{registry.hex}}">
+						<img src="{{url_for('static', filename='medicons/delete.svg')}}" alt=""
+							class="me_registry_delete" hex="{{registry.hex}}">
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+
+	</div>
+
+</section>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='atlantis/assets/js/plugin/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{ url_for('static', filename='me_assets/me_registry.js') }}"></script>
+{% endblock %}

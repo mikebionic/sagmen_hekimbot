@@ -15,9 +15,8 @@
 
 .new_registry_btn:hover,
 .save_registry_btn:hover {
-	height: 2rem;
-	border-radius: 5rem;
 	box-shadow: 0px 0px 5px #4e8bc5c7;
+	opacity: 0.7;
 	transition: 0.3s;
 }
 
@@ -51,4 +50,19 @@
 	width: 90%;
 	margin-top: 0.3rem;
 	margin-bottom: 0.3rem;
+}
+
+.me_registry_action img {
+	height: 2rem;
+	border-radius: 5rem;
+	box-shadow: 0px 0px 25px #4e8bc5c7;
+	transition: 0.3s;
+	margin-right: 0.2rem;
+	margin-left: 0.2rem;
+}
+
+.me_registry_action img:hover {
+	box-shadow: 0px 0px 5px #4e8bc5c7;
+	opacity: 0.7;
+	transition: 0.3s;
 }

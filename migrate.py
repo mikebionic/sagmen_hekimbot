@@ -109,6 +109,7 @@ try:
 
 	for registry in migration_data["registry_data"]:
 		registry["registry_date"] = datetime.strptime(registry["registry_date"], "%d.%m.%Y") if len(registry["registry_date"]) > 5 else None
+		registry["hex"] = datetime.now().timestamp()
 		registry = Registry(**registry)
 		db.session.add(registry)
 		db.session.commit()

@@ -11,6 +11,23 @@ from random import randint
 from main import db
 from . import bp
 from main.models import User, Registry
+from .send_to_ino import send_to_ino
+
+
+@bp.get("/get_latest_registry/<id>")
+def get_latest_registry(id):
+	registry_data = [registry.to_json() for registry in
+		Registry.query
+			.filter(Registry.deleted < 1)\
+			.filter(Registry.status == "")\
+			.filter(Registry.doctor_id == int(id))\
+			.order_by(Registry.id.desc())\
+			.order_by(Registry.doctor_id.desc()).all()]
+	return {
+		"data": registry_data,
+		"doctor_id": id,
+		"status": 1
+	}
 
 
 @bp.get("/registry_home/")
@@ -26,7 +43,7 @@ def get_registry_home():
 
 @bp.post("/manage_registry/")
 def manage_registry():
-	delete = request.args.get("delete",0,type=int)
+	# delete = request.args.get("delete",0,type=int)
 	status, message = 0, ""
 	req = request.get_json()
 	payload = {
@@ -40,11 +57,8 @@ def manage_registry():
 		"registry_date": datetime.strptime(req.get("registry_date"), "%d.%m.%Y") if "date_str" in req else None,	
 	}
 
-	if delete:
-		payload = {
-			"hex": req.get("hex"),
-			"deleted": 1
-		}
+	if "deleted" in req:
+		payload["deleted"] = req.get("deleted")
 
 	this_model = None
 	if payload['hex']:
@@ -54,6 +68,11 @@ def manage_registry():
 		payload["hex"] = secrets.token_hex((randint(9,15)))
 		this_model = Registry(**payload)
 		db.session.add(this_model)
+		if payload["doctor_id"] == 3:
+			try:
+				send_to_ino(payload["user_fullname"],payload["title"])
+			except Exception as e:
+				print(e)
 		status, message = 1, "created"
 	else:
 		this_model.update(**payload)

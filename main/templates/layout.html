@@ -79,8 +79,8 @@
 				<div class="container d-flex">
 					<div class="contact-info mr-auto">
 						<i class="icofont-envelope"></i>
-						<a href="mailto:extramikeme@gmail.com">extramikeme@gmail.com</a>
-						<i class="icofont-phone"></i> +1 5589 55488 55
+						<a href="mailto:extramikeme@gmail.com">sagmen@sanly.tm</a>
+						<i class="icofont-phone"></i> +993 61 506070
 						<i class="icofont-google-map"></i> Türkmenbaşy, Jaňga.
 					</div>
 				</div>
@@ -104,7 +104,7 @@
 								<a href="{{ url_for('views.main') }}#gallery">Suratlar</a>
 							</li>
 							<li>
-								<a href="{{ url_for('views.main') }}#appointment"
+								<a href="{{url_for('registry.get_registry_home')}}"
 									>Barlaga ýazyl</a
 								>
 							</li>
@@ -140,8 +140,8 @@
 								<p>
 									Türkmenbaşy, Jaňga<br />
 									Turkmenistan <br /><br />
-									<strong>Telefon:</strong> +1 5589 55488 55<br />
-									<strong>E-poçta:</strong> extramikeme@gmail.com<br />
+									<strong>Telefon:</strong>+993 61 506070<br />
+									<strong>E-poçta:</strong> sagmen@sanly.tm<br />
 								</p>
 							</div>
 
@@ -171,6 +171,18 @@
 									<li>
 										<i class="bx bx-chevron-right"></i>
 										<a href="#">Lukmançylyk Nokady</a>
+									</li>
+									<li>
+										<i class="bx bx-chevron-right"></i>
+										<a href="{{url_for('registry.get_registry_home')}}"
+											>Kabulhana</a
+										>
+									</li>
+									<li>
+										<i class="bx bx-chevron-right"></i>
+										<a href="{{url_for('registry.get_registry_doctor', id=3)}}"
+											>Şahsy otag</a
+										>
 									</li>
 								</ul>
 							</div>

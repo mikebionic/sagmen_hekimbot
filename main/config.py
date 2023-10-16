@@ -30,3 +30,4 @@ class Config:
 	STATIC_URL_PATH = environ.get('STATIC_URL_PATH') if environ.get('STATIC_URL_PATH') else '/app/static'
 	TEMPLATE_FOLDER_PATH = path.join(*json.loads(environ.get('TEMPLATE_FOLDER_PATH'))) if environ.get('TEMPLATE_FOLDER_PATH') else path.join('main','templates')
 	TEMPLATE_FOLDER_LOCATION = path.join(APP_BASEDIR, TEMPLATE_FOLDER_PATH)
+	INO_IP = environ.get('INO_IP') if environ.get('INO_IP') else "192.168.43.223"
