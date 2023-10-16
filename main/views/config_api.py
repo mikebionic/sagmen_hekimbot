@@ -1,7 +1,7 @@
 from . import bp
 from flask import current_app
 
-@bp.post("/config/")
+@bp.route("/config/",methods=["post"])
 def set_config():
     api_admin_key = request.args.get('key',None,type=str)
     if api_admin_key == current_app.config["api_admin_key"]:
@@ -9,7 +9,7 @@ def set_config():
         updateConfig(req)    
     return make_response(current_app.config)
     
-@bp.get("/config/")
+@bp.route("/config/")
 def get_config():
     api_admin_key = request.args.get('key',None,type=str)
     if api_admin_key == current_app.config["api_admin_key"]:

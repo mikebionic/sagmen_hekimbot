@@ -45,8 +45,8 @@ def people():
 	)
 
 
-@bp.get("/manage_person/")
-@bp.get("/manage_person/<id>")
+@bp.route("/manage_person/")
+@bp.route("/manage_person/<id>")
 def manage_person(id=None):
 	if not id:
 		return render_template("manage_person.html")
@@ -57,13 +57,13 @@ def manage_person(id=None):
 		.first()
 	return render_template("manage_person.html", data=build_person_data(person))
 
-@bp.post("/manage_person/")
+@bp.route("/manage_person/",methods=["post"])
 def manage_person_post():
 	req_data = dict(request.form).copy()
 	this_model = manage_person_data(req_data)
 	return redirect(url_for('views.manage_person',id=this_model.id))
 
-@bp.get("/manage_person/delete/<hex>/")
+@bp.route("/manage_person/delete/<hex>/")
 def manage_person_delete(hex):
 	if not hex:
 		return redirect(url_for('views.people'))
@@ -77,25 +77,25 @@ def manage_person_delete(hex):
 	return redirect(url_for('views.people'))
 
 
-@bp.post("/manage_person/physical/")
+@bp.route("/manage_person/physical/",methods=["post"])
 def manage_physical():
 	req_data = dict(request.form).copy()
 	this_model = manage_physical_data(req_data)
 	return redirect(url_for('views.manage_person',id=this_model.person_id))
 
-@bp.post("/manage_person/medical/")
+@bp.route("/manage_person/medical/",methods=["post"])
 def manage_medical():
 	req_data = dict(request.form).copy()
 	this_model = manage_medical_data(req_data)
 	return redirect(url_for('views.manage_person',id=this_model.person_id))
 
 
-@bp.get("/curing_records/")
+@bp.route("/curing_records/")
 def get_curing_records():
 	return get_hospital_list()
 	
 
-@bp.get("/in_local_clinic/")
+@bp.route("/in_local_clinic/")
 def get_in_local_clinic():
 	return get_hospital_records_list()
 	

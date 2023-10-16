@@ -17,7 +17,7 @@ from main.views.data_utils import (
 )
 from main.models import Curing_record
 
-@bp.get("/hospital_records/")
+@bp.route("/hospital_records/")
 def get_hospital_records():
 	id = request.args.get("id")
 	data = get_hospital_records_list(id)
@@ -25,7 +25,7 @@ def get_hospital_records():
 	return render_template("hospital_records_table.html", hospital_data=hospital_data, data = data)
 
 
-@bp.post("/manage_hospital_records/")
+@bp.route("/manage_hospital_records/",methods=["post"])
 def manage_hospital_records():
 	delete = request.args.get("delete",0,type=int)
 	status, message = 0, ""

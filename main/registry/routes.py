@@ -14,7 +14,7 @@ from main.models import User, Registry
 from .send_to_ino import send_to_ino
 
 
-@bp.get("/get_latest_registry/<id>")
+@bp.route("/get_latest_registry/<id>")
 def get_latest_registry(id):
 	registry_data = [registry.to_json() for registry in
 		Registry.query
@@ -30,7 +30,7 @@ def get_latest_registry(id):
 	}
 
 
-@bp.get("/registry_home/")
+@bp.route("/registry_home/")
 def get_registry_home():
 	dentists = User.query.filter_by(position="dentist").all()
 	registry_data = [registry.to_json() for registry in
@@ -41,7 +41,7 @@ def get_registry_home():
 	return render_template("registry_home.html", dentists=dentists, registry_data=registry_data)
 
 
-@bp.post("/manage_registry/")
+@bp.route("/manage_registry/", methods=["post"])
 def manage_registry():
 	# delete = request.args.get("delete",0,type=int)
 	status, message = 0, ""
@@ -68,11 +68,11 @@ def manage_registry():
 		payload["hex"] = secrets.token_hex((randint(9,15)))
 		this_model = Registry(**payload)
 		db.session.add(this_model)
-		if payload["doctor_id"] == 3:
-			try:
-				send_to_ino(payload["user_fullname"],payload["title"])
-			except Exception as e:
-				print(e)
+		# if payload["doctor_id"] == 3:
+		try:
+			send_to_ino(payload["user_fullname"],payload["title"])
+		except Exception as e:
+			print(e)
 		status, message = 1, "created"
 	else:
 		this_model.update(**payload)
@@ -86,7 +86,25 @@ def manage_registry():
 	}
 
 
-@bp.get("/registry_doctor/<id>")
+@bp.route("/update_latest/")
+def update_latest():
+	doctor_id = request.args.get("doctor_id", 0, type=int)
+	# accepted
+	# declined
+	status = request.args.get("status","",type=str)
+	reg = Registry.query.filter_by(doctor_id=doctor_id)\
+		.filter(Registry.status == "")\
+		.order_by(Registry.created_date.desc()).first()
+	print("changing..")
+	print(reg.to_json())
+	reg.status = status
+	db.session.commit()
+	print("++++++++++++++++")
+	print(reg.to_json())
+	return "ok"
+
+
+@bp.route("/registry_doctor/<id>")
 def get_registry_doctor(id=1):
 	dentist = User.query.get(id)
 	registry_data = [registry.to_json() for registry in

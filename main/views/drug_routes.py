@@ -15,13 +15,13 @@ from main.views.data_utils import (
 )
 from main.models import Drug
 
-@bp.get("/drugs/")
+@bp.route("/drugs/")
 def get_drugs():
 	data = get_drugs_list()
 	return render_template("drugs_table.html", data = data)
 
 
-@bp.post("/manage_drugs/")
+@bp.route("/manage_drugs/",methods=["post"])
 def manage_drugs():
 	delete = request.args.get("delete",0,type=int)
 	status, message = 0, ""
